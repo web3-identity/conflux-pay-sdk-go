@@ -1,4 +1,4 @@
-module github.com/wangdayong228/conflux-pay
+module github.com/wangdayong228/conflux-pay-sdk-go
 
 go 1.13
 
