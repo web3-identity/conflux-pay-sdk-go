@@ -20,6 +20,9 @@ type ModelsWechatOrderDetail struct {
 	Appid *string `json:"appid,omitempty"`
 	Attach *string `json:"attach,omitempty"`
 	BankType *string `json:"bank_type,omitempty"`
+	CreatedAt *string `json:"created_at,omitempty"`
+	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
+	Id *int32 `json:"id,omitempty"`
 	Mchid *string `json:"mchid,omitempty"`
 	Payer *string `json:"payer,omitempty"`
 	SuccessTime *string `json:"success_time,omitempty"`
@@ -28,6 +31,7 @@ type ModelsWechatOrderDetail struct {
 	TradeStateDesc *string `json:"trade_state_desc,omitempty"`
 	TradeType *string `json:"trade_type,omitempty"`
 	TransactionId *string `json:"transaction_id,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -176,6 +180,102 @@ func (o *ModelsWechatOrderDetail) HasBankType() bool {
 // SetBankType gets a reference to the given string and assigns it to the BankType field.
 func (o *ModelsWechatOrderDetail) SetBankType(v string) {
 	o.BankType = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *ModelsWechatOrderDetail) GetCreatedAt() string {
+	if o == nil || o.CreatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsWechatOrderDetail) GetCreatedAtOk() (*string, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ModelsWechatOrderDetail) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+func (o *ModelsWechatOrderDetail) SetCreatedAt(v string) {
+	o.CreatedAt = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *ModelsWechatOrderDetail) GetDeletedAt() GormDeletedAt {
+	if o == nil || o.DeletedAt == nil {
+		var ret GormDeletedAt
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsWechatOrderDetail) GetDeletedAtOk() (*GormDeletedAt, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *ModelsWechatOrderDetail) HasDeletedAt() bool {
+	if o != nil && o.DeletedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletedAt gets a reference to the given GormDeletedAt and assigns it to the DeletedAt field.
+func (o *ModelsWechatOrderDetail) SetDeletedAt(v GormDeletedAt) {
+	o.DeletedAt = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ModelsWechatOrderDetail) GetId() int32 {
+	if o == nil || o.Id == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsWechatOrderDetail) GetIdOk() (*int32, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ModelsWechatOrderDetail) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *ModelsWechatOrderDetail) SetId(v int32) {
+	o.Id = &v
 }
 
 // GetMchid returns the Mchid field value if set, zero value otherwise.
@@ -434,6 +534,38 @@ func (o *ModelsWechatOrderDetail) SetTransactionId(v string) {
 	o.TransactionId = &v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *ModelsWechatOrderDetail) GetUpdatedAt() string {
+	if o == nil || o.UpdatedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsWechatOrderDetail) GetUpdatedAtOk() (*string, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *ModelsWechatOrderDetail) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
+func (o *ModelsWechatOrderDetail) SetUpdatedAt(v string) {
+	o.UpdatedAt = &v
+}
+
 func (o ModelsWechatOrderDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Amount != nil {
@@ -447,6 +579,15 @@ func (o ModelsWechatOrderDetail) MarshalJSON() ([]byte, error) {
 	}
 	if o.BankType != nil {
 		toSerialize["bank_type"] = o.BankType
+	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Mchid != nil {
 		toSerialize["mchid"] = o.Mchid
@@ -472,6 +613,9 @@ func (o ModelsWechatOrderDetail) MarshalJSON() ([]byte, error) {
 	if o.TransactionId != nil {
 		toSerialize["transaction_id"] = o.TransactionId
 	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -494,6 +638,9 @@ func (o *ModelsWechatOrderDetail) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "appid")
 		delete(additionalProperties, "attach")
 		delete(additionalProperties, "bank_type")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "deleted_at")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "mchid")
 		delete(additionalProperties, "payer")
 		delete(additionalProperties, "success_time")
@@ -502,6 +649,7 @@ func (o *ModelsWechatOrderDetail) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "trade_state_desc")
 		delete(additionalProperties, "trade_type")
 		delete(additionalProperties, "transaction_id")
+		delete(additionalProperties, "updated_at")
 		o.AdditionalProperties = additionalProperties
 	}
 

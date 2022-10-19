@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **Appid** | Pointer to **string** |  | [optional] 
 **Attach** | Pointer to **string** |  | [optional] 
 **BankType** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **string** |  | [optional] 
+**DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
 **Mchid** | Pointer to **string** |  | [optional] 
 **Payer** | Pointer to **string** |  | [optional] 
 **SuccessTime** | Pointer to **string** |  | [optional] 
@@ -16,6 +19,7 @@ Name | Type | Description | Notes
 **TradeStateDesc** | Pointer to **string** |  | [optional] 
 **TradeType** | Pointer to **string** |  | [optional] 
 **TransactionId** | Pointer to **string** |  | [optional] 
+**UpdatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -135,6 +139,81 @@ SetBankType sets BankType field to given value.
 `func (o *ModelsWechatOrderDetail) HasBankType() bool`
 
 HasBankType returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *ModelsWechatOrderDetail) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *ModelsWechatOrderDetail) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *ModelsWechatOrderDetail) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *ModelsWechatOrderDetail) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetDeletedAt
+
+`func (o *ModelsWechatOrderDetail) GetDeletedAt() GormDeletedAt`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *ModelsWechatOrderDetail) GetDeletedAtOk() (*GormDeletedAt, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletedAt
+
+`func (o *ModelsWechatOrderDetail) SetDeletedAt(v GormDeletedAt)`
+
+SetDeletedAt sets DeletedAt field to given value.
+
+### HasDeletedAt
+
+`func (o *ModelsWechatOrderDetail) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### GetId
+
+`func (o *ModelsWechatOrderDetail) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ModelsWechatOrderDetail) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ModelsWechatOrderDetail) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *ModelsWechatOrderDetail) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetMchid
 
@@ -335,6 +414,31 @@ SetTransactionId sets TransactionId field to given value.
 `func (o *ModelsWechatOrderDetail) HasTransactionId() bool`
 
 HasTransactionId returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *ModelsWechatOrderDetail) GetUpdatedAt() string`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *ModelsWechatOrderDetail) GetUpdatedAtOk() (*string, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *ModelsWechatOrderDetail) SetUpdatedAt(v string)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *ModelsWechatOrderDetail) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

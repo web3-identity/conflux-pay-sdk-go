@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **int32** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**TimeExpire** | Pointer to **int32** |  | [optional] 
-**TradeType** | Pointer to **int32** |  | [optional] 
+**Amount** | **int32** |  | 
+**Description** | **string** |  | 
+**TimeExpire** | **int32** |  | 
+**TradeType** | **int32** |  | 
 
 ## Methods
 
 ### NewServicesMakeWechatOrderReq
 
-`func NewServicesMakeWechatOrderReq() *ServicesMakeWechatOrderReq`
+`func NewServicesMakeWechatOrderReq(amount int32, description string, timeExpire int32, tradeType int32, ) *ServicesMakeWechatOrderReq`
 
 NewServicesMakeWechatOrderReq instantiates a new ServicesMakeWechatOrderReq object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
-### HasAmount
-
-`func (o *ServicesMakeWechatOrderReq) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-### HasDescription
-
-`func (o *ServicesMakeWechatOrderReq) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### GetTimeExpire
 
@@ -97,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetTimeExpire sets TimeExpire field to given value.
 
-### HasTimeExpire
-
-`func (o *ServicesMakeWechatOrderReq) HasTimeExpire() bool`
-
-HasTimeExpire returns a boolean if a field has been set.
 
 ### GetTradeType
 
@@ -122,11 +107,6 @@ and a boolean to check if the value has been set.
 
 SetTradeType sets TradeType field to given value.
 
-### HasTradeType
-
-`func (o *ServicesMakeWechatOrderReq) HasTradeType() bool`
-
-HasTradeType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

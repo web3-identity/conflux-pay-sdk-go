@@ -16,10 +16,10 @@ import (
 
 // ServicesMakeWechatOrderReq struct for ServicesMakeWechatOrderReq
 type ServicesMakeWechatOrderReq struct {
-	Amount *int32 `json:"amount,omitempty"`
-	Description *string `json:"description,omitempty"`
-	TimeExpire *int32 `json:"time_expire,omitempty"`
-	TradeType *int32 `json:"trade_type,omitempty"`
+	Amount int32 `json:"amount"`
+	Description string `json:"description"`
+	TimeExpire int32 `json:"time_expire"`
+	TradeType int32 `json:"trade_type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -29,8 +29,12 @@ type _ServicesMakeWechatOrderReq ServicesMakeWechatOrderReq
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesMakeWechatOrderReq() *ServicesMakeWechatOrderReq {
+func NewServicesMakeWechatOrderReq(amount int32, description string, timeExpire int32, tradeType int32) *ServicesMakeWechatOrderReq {
 	this := ServicesMakeWechatOrderReq{}
+	this.Amount = amount
+	this.Description = description
+	this.TimeExpire = timeExpire
+	this.TradeType = tradeType
 	return &this
 }
 
@@ -42,146 +46,114 @@ func NewServicesMakeWechatOrderReqWithDefaults() *ServicesMakeWechatOrderReq {
 	return &this
 }
 
-// GetAmount returns the Amount field value if set, zero value otherwise.
+// GetAmount returns the Amount field value
 func (o *ServicesMakeWechatOrderReq) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Amount
+
+	return o.Amount
 }
 
-// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeWechatOrderReq) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Amount, true
+	return &o.Amount, true
 }
 
-// HasAmount returns a boolean if a field has been set.
-func (o *ServicesMakeWechatOrderReq) HasAmount() bool {
-	if o != nil && o.Amount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAmount gets a reference to the given int32 and assigns it to the Amount field.
+// SetAmount sets field value
 func (o *ServicesMakeWechatOrderReq) SetAmount(v int32) {
-	o.Amount = &v
+	o.Amount = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value
 func (o *ServicesMakeWechatOrderReq) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeWechatOrderReq) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *ServicesMakeWechatOrderReq) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *ServicesMakeWechatOrderReq) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
-// GetTimeExpire returns the TimeExpire field value if set, zero value otherwise.
+// GetTimeExpire returns the TimeExpire field value
 func (o *ServicesMakeWechatOrderReq) GetTimeExpire() int32 {
-	if o == nil || o.TimeExpire == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.TimeExpire
+
+	return o.TimeExpire
 }
 
-// GetTimeExpireOk returns a tuple with the TimeExpire field value if set, nil otherwise
+// GetTimeExpireOk returns a tuple with the TimeExpire field value
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeWechatOrderReq) GetTimeExpireOk() (*int32, bool) {
-	if o == nil || o.TimeExpire == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.TimeExpire, true
+	return &o.TimeExpire, true
 }
 
-// HasTimeExpire returns a boolean if a field has been set.
-func (o *ServicesMakeWechatOrderReq) HasTimeExpire() bool {
-	if o != nil && o.TimeExpire != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeExpire gets a reference to the given int32 and assigns it to the TimeExpire field.
+// SetTimeExpire sets field value
 func (o *ServicesMakeWechatOrderReq) SetTimeExpire(v int32) {
-	o.TimeExpire = &v
+	o.TimeExpire = v
 }
 
-// GetTradeType returns the TradeType field value if set, zero value otherwise.
+// GetTradeType returns the TradeType field value
 func (o *ServicesMakeWechatOrderReq) GetTradeType() int32 {
-	if o == nil || o.TradeType == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.TradeType
+
+	return o.TradeType
 }
 
-// GetTradeTypeOk returns a tuple with the TradeType field value if set, nil otherwise
+// GetTradeTypeOk returns a tuple with the TradeType field value
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeWechatOrderReq) GetTradeTypeOk() (*int32, bool) {
-	if o == nil || o.TradeType == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.TradeType, true
+	return &o.TradeType, true
 }
 
-// HasTradeType returns a boolean if a field has been set.
-func (o *ServicesMakeWechatOrderReq) HasTradeType() bool {
-	if o != nil && o.TradeType != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTradeType gets a reference to the given int32 and assigns it to the TradeType field.
+// SetTradeType sets field value
 func (o *ServicesMakeWechatOrderReq) SetTradeType(v int32) {
-	o.TradeType = &v
+	o.TradeType = v
 }
 
 func (o ServicesMakeWechatOrderReq) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if true {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.Description != nil {
+	if true {
 		toSerialize["description"] = o.Description
 	}
-	if o.TimeExpire != nil {
+	if true {
 		toSerialize["time_expire"] = o.TimeExpire
 	}
-	if o.TradeType != nil {
+	if true {
 		toSerialize["trade_type"] = o.TradeType
 	}
 

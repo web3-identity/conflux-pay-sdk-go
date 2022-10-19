@@ -33,8 +33,8 @@ type OrdersApi interface {
 	MakeOrder(ctx context.Context) ApiMakeOrderRequest
 
 	// MakeOrderExecute executes the request
-	//  @return ServicesMakeOrderResp
-	MakeOrderExecute(r ApiMakeOrderRequest) (*ServicesMakeOrderResp, *http.Response, error)
+	//  @return ModelsOrder
+	MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder, *http.Response, error)
 
 	/*
 	QueryOrderSummary query order summary by trade no
@@ -97,7 +97,7 @@ func (r ApiMakeOrderRequest) WecahtOrdReq(wecahtOrdReq ServicesMakeWechatOrderRe
 	return r
 }
 
-func (r ApiMakeOrderRequest) Execute() (*ServicesMakeOrderResp, *http.Response, error) {
+func (r ApiMakeOrderRequest) Execute() (*ModelsOrder, *http.Response, error) {
 	return r.ApiService.MakeOrderExecute(r)
 }
 
@@ -117,13 +117,13 @@ func (a *OrdersApiService) MakeOrder(ctx context.Context) ApiMakeOrderRequest {
 }
 
 // Execute executes the request
-//  @return ServicesMakeOrderResp
-func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ServicesMakeOrderResp, *http.Response, error) {
+//  @return ModelsOrder
+func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServicesMakeOrderResp
+		localVarReturnValue  *ModelsOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.MakeOrder")

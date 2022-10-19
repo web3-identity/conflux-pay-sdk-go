@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## MakeOrder
 
-> ServicesMakeOrderResp MakeOrder(ctx).WecahtOrdReq(wecahtOrdReq).Execute()
+> ModelsOrder MakeOrder(ctx).WecahtOrdReq(wecahtOrdReq).Execute()
 
 Make Order
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-    wecahtOrdReq := *openapiclient.NewServicesMakeWechatOrderReq() // ServicesMakeWechatOrderReq | make_wechat_order_req
+    wecahtOrdReq := *openapiclient.NewServicesMakeWechatOrderReq(int32(123), "Description_example", int32(123), int32(123)) // ServicesMakeWechatOrderReq | make_wechat_order_req
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.MakeOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `MakeOrder`: ServicesMakeOrderResp
+    // response from `MakeOrder`: ModelsOrder
     fmt.Fprintf(os.Stdout, "Response from `OrdersApi.MakeOrder`: %v\n", resp)
 }
 ```
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServicesMakeOrderResp**](ServicesMakeOrderResp.md)
+[**ModelsOrder**](ModelsOrder.md)
 
 ### Authorization
 

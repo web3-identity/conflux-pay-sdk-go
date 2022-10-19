@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/services.MakeOrderResp'
+                $ref: '#/components/schemas/models.Order'
           description: OK
         "400":
           content:
@@ -221,13 +221,19 @@ components:
         mchid: mchid
         trade_state: trade_state
         bank_type: bank_type
+        created_at: created_at
+        success_time: success_time
+        deleted_at:
+          valid: true
+          time: time
+        payer: payer
+        updated_at: updated_at
         appid: appid
         trade_state_desc: trade_state_desc
         trade_no: trade_no
         trade_type: trade_type
         attach: attach
-        success_time: success_time
-        payer: payer
+        id: 6
       properties:
         amount:
           type: integer
@@ -237,6 +243,12 @@ components:
           type: string
         bank_type:
           type: string
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        id:
+          type: integer
         mchid:
           type: string
         payer:
@@ -252,6 +264,8 @@ components:
         trade_type:
           type: string
         transaction_id:
+          type: string
+        updated_at:
           type: string
       type: object
     services.MakeOrderResp:
@@ -283,5 +297,10 @@ components:
           type: integer
         trade_type:
           type: integer
+      required:
+      - amount
+      - description
+      - time_expire
+      - trade_type
       type: object
 x-original-swagger-version: "2.0"
