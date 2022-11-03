@@ -9,9 +9,11 @@ docs/CnsErrorsRainbowErrorDetailInfo.md
 docs/GormDeletedAt.md
 docs/ModelsOrder.md
 docs/ModelsWechatOrderDetail.md
+docs/ModelsWechatRefundDetail.md
 docs/OrdersApi.md
+docs/ServicesMakeOrderReq.md
 docs/ServicesMakeOrderResp.md
-docs/ServicesMakeWechatOrderReq.md
+docs/ServicesRefundReq.md
 git_push.sh
 go.mod
 go.sum
@@ -19,7 +21,9 @@ model_cns_errors_rainbow_error_detail_info.go
 model_gorm_deleted_at.go
 model_models_order.go
 model_models_wechat_order_detail.go
+model_models_wechat_refund_detail.go
+model_services_make_order_req.go
 model_services_make_order_resp.go
-model_services_make_wechat_order_req.go
+model_services_refund_req.go
 response.go
 utils.go
