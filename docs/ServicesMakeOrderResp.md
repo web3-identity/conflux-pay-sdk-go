@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **CodeUrl** | Pointer to **string** |  | [optional] 
 **H5Url** | Pointer to **string** |  | [optional] 
 **TradeNo** | Pointer to **string** |  | [optional] 
-**TradeProvider** | Pointer to **int32** |  | [optional] 
-**TradeType** | Pointer to **int32** |  | [optional] 
+**TradeProvider** | Pointer to **string** |  | [optional] 
+**TradeType** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -106,20 +106,20 @@ HasTradeNo returns a boolean if a field has been set.
 
 ### GetTradeProvider
 
-`func (o *ServicesMakeOrderResp) GetTradeProvider() int32`
+`func (o *ServicesMakeOrderResp) GetTradeProvider() string`
 
 GetTradeProvider returns the TradeProvider field if non-nil, zero value otherwise.
 
 ### GetTradeProviderOk
 
-`func (o *ServicesMakeOrderResp) GetTradeProviderOk() (*int32, bool)`
+`func (o *ServicesMakeOrderResp) GetTradeProviderOk() (*string, bool)`
 
 GetTradeProviderOk returns a tuple with the TradeProvider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradeProvider
 
-`func (o *ServicesMakeOrderResp) SetTradeProvider(v int32)`
+`func (o *ServicesMakeOrderResp) SetTradeProvider(v string)`
 
 SetTradeProvider sets TradeProvider field to given value.
 
@@ -131,20 +131,20 @@ HasTradeProvider returns a boolean if a field has been set.
 
 ### GetTradeType
 
-`func (o *ServicesMakeOrderResp) GetTradeType() int32`
+`func (o *ServicesMakeOrderResp) GetTradeType() string`
 
 GetTradeType returns the TradeType field if non-nil, zero value otherwise.
 
 ### GetTradeTypeOk
 
-`func (o *ServicesMakeOrderResp) GetTradeTypeOk() (*int32, bool)`
+`func (o *ServicesMakeOrderResp) GetTradeTypeOk() (*string, bool)`
 
 GetTradeTypeOk returns a tuple with the TradeType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradeType
 
-`func (o *ServicesMakeOrderResp) SetTradeType(v int32)`
+`func (o *ServicesMakeOrderResp) SetTradeType(v string)`
 
 SetTradeType sets TradeType field to given value.
 

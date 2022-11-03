@@ -19,8 +19,8 @@ type ServicesMakeOrderResp struct {
 	CodeUrl *string `json:"code_url,omitempty"`
 	H5Url *string `json:"h5_url,omitempty"`
 	TradeNo *string `json:"trade_no,omitempty"`
-	TradeProvider *int32 `json:"trade_provider,omitempty"`
-	TradeType *int32 `json:"trade_type,omitempty"`
+	TradeProvider *string `json:"trade_provider,omitempty"`
+	TradeType *string `json:"trade_type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,9 +140,9 @@ func (o *ServicesMakeOrderResp) SetTradeNo(v string) {
 }
 
 // GetTradeProvider returns the TradeProvider field value if set, zero value otherwise.
-func (o *ServicesMakeOrderResp) GetTradeProvider() int32 {
+func (o *ServicesMakeOrderResp) GetTradeProvider() string {
 	if o == nil || o.TradeProvider == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.TradeProvider
@@ -150,7 +150,7 @@ func (o *ServicesMakeOrderResp) GetTradeProvider() int32 {
 
 // GetTradeProviderOk returns a tuple with the TradeProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServicesMakeOrderResp) GetTradeProviderOk() (*int32, bool) {
+func (o *ServicesMakeOrderResp) GetTradeProviderOk() (*string, bool) {
 	if o == nil || o.TradeProvider == nil {
 		return nil, false
 	}
@@ -166,15 +166,15 @@ func (o *ServicesMakeOrderResp) HasTradeProvider() bool {
 	return false
 }
 
-// SetTradeProvider gets a reference to the given int32 and assigns it to the TradeProvider field.
-func (o *ServicesMakeOrderResp) SetTradeProvider(v int32) {
+// SetTradeProvider gets a reference to the given string and assigns it to the TradeProvider field.
+func (o *ServicesMakeOrderResp) SetTradeProvider(v string) {
 	o.TradeProvider = &v
 }
 
 // GetTradeType returns the TradeType field value if set, zero value otherwise.
-func (o *ServicesMakeOrderResp) GetTradeType() int32 {
+func (o *ServicesMakeOrderResp) GetTradeType() string {
 	if o == nil || o.TradeType == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.TradeType
@@ -182,7 +182,7 @@ func (o *ServicesMakeOrderResp) GetTradeType() int32 {
 
 // GetTradeTypeOk returns a tuple with the TradeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServicesMakeOrderResp) GetTradeTypeOk() (*int32, bool) {
+func (o *ServicesMakeOrderResp) GetTradeTypeOk() (*string, bool) {
 	if o == nil || o.TradeType == nil {
 		return nil, false
 	}
@@ -198,8 +198,8 @@ func (o *ServicesMakeOrderResp) HasTradeType() bool {
 	return false
 }
 
-// SetTradeType gets a reference to the given int32 and assigns it to the TradeType field.
-func (o *ServicesMakeOrderResp) SetTradeType(v int32) {
+// SetTradeType gets a reference to the given string and assigns it to the TradeType field.
+func (o *ServicesMakeOrderResp) SetTradeType(v string) {
 	o.TradeType = &v
 }
 

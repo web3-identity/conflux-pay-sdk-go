@@ -25,11 +25,12 @@ type ModelsOrder struct {
 	Description *string `json:"description,omitempty"`
 	H5Url *string `json:"h5_url,omitempty"`
 	Id *int32 `json:"id,omitempty"`
+	RefundState *string `json:"refund_state,omitempty"`
 	TimeExpire *string `json:"time_expire,omitempty"`
 	TradeNo *string `json:"trade_no,omitempty"`
-	TradeProvider *int32 `json:"trade_provider,omitempty"`
-	TradeState *int32 `json:"trade_state,omitempty"`
-	TradeType *int32 `json:"trade_type,omitempty"`
+	TradeProvider *string `json:"trade_provider,omitempty"`
+	TradeState *string `json:"trade_state,omitempty"`
+	TradeType *string `json:"trade_type,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -309,6 +310,38 @@ func (o *ModelsOrder) SetId(v int32) {
 	o.Id = &v
 }
 
+// GetRefundState returns the RefundState field value if set, zero value otherwise.
+func (o *ModelsOrder) GetRefundState() string {
+	if o == nil || o.RefundState == nil {
+		var ret string
+		return ret
+	}
+	return *o.RefundState
+}
+
+// GetRefundStateOk returns a tuple with the RefundState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetRefundStateOk() (*string, bool) {
+	if o == nil || o.RefundState == nil {
+		return nil, false
+	}
+	return o.RefundState, true
+}
+
+// HasRefundState returns a boolean if a field has been set.
+func (o *ModelsOrder) HasRefundState() bool {
+	if o != nil && o.RefundState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRefundState gets a reference to the given string and assigns it to the RefundState field.
+func (o *ModelsOrder) SetRefundState(v string) {
+	o.RefundState = &v
+}
+
 // GetTimeExpire returns the TimeExpire field value if set, zero value otherwise.
 func (o *ModelsOrder) GetTimeExpire() string {
 	if o == nil || o.TimeExpire == nil {
@@ -374,9 +407,9 @@ func (o *ModelsOrder) SetTradeNo(v string) {
 }
 
 // GetTradeProvider returns the TradeProvider field value if set, zero value otherwise.
-func (o *ModelsOrder) GetTradeProvider() int32 {
+func (o *ModelsOrder) GetTradeProvider() string {
 	if o == nil || o.TradeProvider == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.TradeProvider
@@ -384,7 +417,7 @@ func (o *ModelsOrder) GetTradeProvider() int32 {
 
 // GetTradeProviderOk returns a tuple with the TradeProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelsOrder) GetTradeProviderOk() (*int32, bool) {
+func (o *ModelsOrder) GetTradeProviderOk() (*string, bool) {
 	if o == nil || o.TradeProvider == nil {
 		return nil, false
 	}
@@ -400,15 +433,15 @@ func (o *ModelsOrder) HasTradeProvider() bool {
 	return false
 }
 
-// SetTradeProvider gets a reference to the given int32 and assigns it to the TradeProvider field.
-func (o *ModelsOrder) SetTradeProvider(v int32) {
+// SetTradeProvider gets a reference to the given string and assigns it to the TradeProvider field.
+func (o *ModelsOrder) SetTradeProvider(v string) {
 	o.TradeProvider = &v
 }
 
 // GetTradeState returns the TradeState field value if set, zero value otherwise.
-func (o *ModelsOrder) GetTradeState() int32 {
+func (o *ModelsOrder) GetTradeState() string {
 	if o == nil || o.TradeState == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.TradeState
@@ -416,7 +449,7 @@ func (o *ModelsOrder) GetTradeState() int32 {
 
 // GetTradeStateOk returns a tuple with the TradeState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelsOrder) GetTradeStateOk() (*int32, bool) {
+func (o *ModelsOrder) GetTradeStateOk() (*string, bool) {
 	if o == nil || o.TradeState == nil {
 		return nil, false
 	}
@@ -432,15 +465,15 @@ func (o *ModelsOrder) HasTradeState() bool {
 	return false
 }
 
-// SetTradeState gets a reference to the given int32 and assigns it to the TradeState field.
-func (o *ModelsOrder) SetTradeState(v int32) {
+// SetTradeState gets a reference to the given string and assigns it to the TradeState field.
+func (o *ModelsOrder) SetTradeState(v string) {
 	o.TradeState = &v
 }
 
 // GetTradeType returns the TradeType field value if set, zero value otherwise.
-func (o *ModelsOrder) GetTradeType() int32 {
+func (o *ModelsOrder) GetTradeType() string {
 	if o == nil || o.TradeType == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.TradeType
@@ -448,7 +481,7 @@ func (o *ModelsOrder) GetTradeType() int32 {
 
 // GetTradeTypeOk returns a tuple with the TradeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ModelsOrder) GetTradeTypeOk() (*int32, bool) {
+func (o *ModelsOrder) GetTradeTypeOk() (*string, bool) {
 	if o == nil || o.TradeType == nil {
 		return nil, false
 	}
@@ -464,8 +497,8 @@ func (o *ModelsOrder) HasTradeType() bool {
 	return false
 }
 
-// SetTradeType gets a reference to the given int32 and assigns it to the TradeType field.
-func (o *ModelsOrder) SetTradeType(v int32) {
+// SetTradeType gets a reference to the given string and assigns it to the TradeType field.
+func (o *ModelsOrder) SetTradeType(v string) {
 	o.TradeType = &v
 }
 
@@ -527,6 +560,9 @@ func (o ModelsOrder) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.RefundState != nil {
+		toSerialize["refund_state"] = o.RefundState
+	}
 	if o.TimeExpire != nil {
 		toSerialize["time_expire"] = o.TimeExpire
 	}
@@ -571,6 +607,7 @@ func (o *ModelsOrder) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "h5_url")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "refund_state")
 		delete(additionalProperties, "time_expire")
 		delete(additionalProperties, "trade_no")
 		delete(additionalProperties, "trade_provider")

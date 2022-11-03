@@ -78,10 +78,12 @@ All URIs are relative to *http://127.0.0.1:8080/v0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*OrdersApi* | [**Close**](docs/OrdersApi.md#close) | **Put** /orders/wechat/close/{trade_no} | close order
 *OrdersApi* | [**MakeOrder**](docs/OrdersApi.md#makeorder) | **Post** /orders/wechat | Make Order
 *OrdersApi* | [**QueryOrderSummary**](docs/OrdersApi.md#queryordersummary) | **Get** /orders/summary/{trade_no} | query order summary by trade no
 *OrdersApi* | [**QueryWechatOrderDetail**](docs/OrdersApi.md#querywechatorderdetail) | **Get** /orders/wechat/{trade_no} | query order by trade no
-*OrdersApi* | [**RefreshPayUrl**](docs/OrdersApi.md#refreshpayurl) | **Post** /orders/wechat/refresh-url/{trade_no} | refresh pay url
+*OrdersApi* | [**RefreshPayUrl**](docs/OrdersApi.md#refreshpayurl) | **Put** /orders/wechat/refresh-url/{trade_no} | refresh pay url
+*OrdersApi* | [**Refund**](docs/OrdersApi.md#refund) | **Put** /orders/wechat/refund/{trade_no} | refund pay
 
 
 ## Documentation For Models
@@ -90,8 +92,10 @@ Class | Method | HTTP request | Description
  - [GormDeletedAt](docs/GormDeletedAt.md)
  - [ModelsOrder](docs/ModelsOrder.md)
  - [ModelsWechatOrderDetail](docs/ModelsWechatOrderDetail.md)
+ - [ModelsWechatRefundDetail](docs/ModelsWechatRefundDetail.md)
+ - [ServicesMakeOrderReq](docs/ServicesMakeOrderReq.md)
  - [ServicesMakeOrderResp](docs/ServicesMakeOrderResp.md)
- - [ServicesMakeWechatOrderReq](docs/ServicesMakeWechatOrderReq.md)
+ - [ServicesRefundReq](docs/ServicesRefundReq.md)
 
 
 ## Documentation For Authorization

@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** |  | [optional] 
 **Mchid** | Pointer to **string** |  | [optional] 
 **Payer** | Pointer to **string** |  | [optional] 
+**RefreshStatus** | Pointer to **string** |  | [optional] 
+**RefundNo** | Pointer to **string** |  | [optional] 
 **SuccessTime** | Pointer to **string** |  | [optional] 
 **TradeNo** | Pointer to **string** |  | [optional] 
 **TradeState** | Pointer to **string** |  | [optional] 
@@ -264,6 +266,56 @@ SetPayer sets Payer field to given value.
 `func (o *ModelsWechatOrderDetail) HasPayer() bool`
 
 HasPayer returns a boolean if a field has been set.
+
+### GetRefreshStatus
+
+`func (o *ModelsWechatOrderDetail) GetRefreshStatus() string`
+
+GetRefreshStatus returns the RefreshStatus field if non-nil, zero value otherwise.
+
+### GetRefreshStatusOk
+
+`func (o *ModelsWechatOrderDetail) GetRefreshStatusOk() (*string, bool)`
+
+GetRefreshStatusOk returns a tuple with the RefreshStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefreshStatus
+
+`func (o *ModelsWechatOrderDetail) SetRefreshStatus(v string)`
+
+SetRefreshStatus sets RefreshStatus field to given value.
+
+### HasRefreshStatus
+
+`func (o *ModelsWechatOrderDetail) HasRefreshStatus() bool`
+
+HasRefreshStatus returns a boolean if a field has been set.
+
+### GetRefundNo
+
+`func (o *ModelsWechatOrderDetail) GetRefundNo() string`
+
+GetRefundNo returns the RefundNo field if non-nil, zero value otherwise.
+
+### GetRefundNoOk
+
+`func (o *ModelsWechatOrderDetail) GetRefundNoOk() (*string, bool)`
+
+GetRefundNoOk returns a tuple with the RefundNo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefundNo
+
+`func (o *ModelsWechatOrderDetail) SetRefundNo(v string)`
+
+SetRefundNo sets RefundNo field to given value.
+
+### HasRefundNo
+
+`func (o *ModelsWechatOrderDetail) HasRefundNo() bool`
+
+HasRefundNo returns a boolean if a field has been set.
 
 ### GetSuccessTime
 

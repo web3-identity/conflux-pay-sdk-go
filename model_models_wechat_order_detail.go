@@ -25,6 +25,8 @@ type ModelsWechatOrderDetail struct {
 	Id *int32 `json:"id,omitempty"`
 	Mchid *string `json:"mchid,omitempty"`
 	Payer *string `json:"payer,omitempty"`
+	RefreshStatus *string `json:"refresh_status,omitempty"`
+	RefundNo *string `json:"refund_no,omitempty"`
 	SuccessTime *string `json:"success_time,omitempty"`
 	TradeNo *string `json:"trade_no,omitempty"`
 	TradeState *string `json:"trade_state,omitempty"`
@@ -342,6 +344,70 @@ func (o *ModelsWechatOrderDetail) SetPayer(v string) {
 	o.Payer = &v
 }
 
+// GetRefreshStatus returns the RefreshStatus field value if set, zero value otherwise.
+func (o *ModelsWechatOrderDetail) GetRefreshStatus() string {
+	if o == nil || o.RefreshStatus == nil {
+		var ret string
+		return ret
+	}
+	return *o.RefreshStatus
+}
+
+// GetRefreshStatusOk returns a tuple with the RefreshStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsWechatOrderDetail) GetRefreshStatusOk() (*string, bool) {
+	if o == nil || o.RefreshStatus == nil {
+		return nil, false
+	}
+	return o.RefreshStatus, true
+}
+
+// HasRefreshStatus returns a boolean if a field has been set.
+func (o *ModelsWechatOrderDetail) HasRefreshStatus() bool {
+	if o != nil && o.RefreshStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRefreshStatus gets a reference to the given string and assigns it to the RefreshStatus field.
+func (o *ModelsWechatOrderDetail) SetRefreshStatus(v string) {
+	o.RefreshStatus = &v
+}
+
+// GetRefundNo returns the RefundNo field value if set, zero value otherwise.
+func (o *ModelsWechatOrderDetail) GetRefundNo() string {
+	if o == nil || o.RefundNo == nil {
+		var ret string
+		return ret
+	}
+	return *o.RefundNo
+}
+
+// GetRefundNoOk returns a tuple with the RefundNo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsWechatOrderDetail) GetRefundNoOk() (*string, bool) {
+	if o == nil || o.RefundNo == nil {
+		return nil, false
+	}
+	return o.RefundNo, true
+}
+
+// HasRefundNo returns a boolean if a field has been set.
+func (o *ModelsWechatOrderDetail) HasRefundNo() bool {
+	if o != nil && o.RefundNo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRefundNo gets a reference to the given string and assigns it to the RefundNo field.
+func (o *ModelsWechatOrderDetail) SetRefundNo(v string) {
+	o.RefundNo = &v
+}
+
 // GetSuccessTime returns the SuccessTime field value if set, zero value otherwise.
 func (o *ModelsWechatOrderDetail) GetSuccessTime() string {
 	if o == nil || o.SuccessTime == nil {
@@ -595,6 +661,12 @@ func (o ModelsWechatOrderDetail) MarshalJSON() ([]byte, error) {
 	if o.Payer != nil {
 		toSerialize["payer"] = o.Payer
 	}
+	if o.RefreshStatus != nil {
+		toSerialize["refresh_status"] = o.RefreshStatus
+	}
+	if o.RefundNo != nil {
+		toSerialize["refund_no"] = o.RefundNo
+	}
 	if o.SuccessTime != nil {
 		toSerialize["success_time"] = o.SuccessTime
 	}
@@ -643,6 +715,8 @@ func (o *ModelsWechatOrderDetail) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "mchid")
 		delete(additionalProperties, "payer")
+		delete(additionalProperties, "refresh_status")
+		delete(additionalProperties, "refund_no")
 		delete(additionalProperties, "success_time")
 		delete(additionalProperties, "trade_no")
 		delete(additionalProperties, "trade_state")

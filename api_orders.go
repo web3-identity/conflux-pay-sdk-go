@@ -23,6 +23,21 @@ import (
 type OrdersApi interface {
 
 	/*
+	Close close order
+
+	close order
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tradeNo trade no
+	@return ApiCloseRequest
+	*/
+	Close(ctx context.Context, tradeNo string) ApiCloseRequest
+
+	// CloseExecute executes the request
+	//  @return ModelsWechatOrderDetail
+	CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDetail, *http.Response, error)
+
+	/*
 	MakeOrder Make Order
 
 	make order
@@ -80,20 +95,157 @@ type OrdersApi interface {
 	// RefreshPayUrlExecute executes the request
 	//  @return ServicesMakeOrderResp
 	RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ServicesMakeOrderResp, *http.Response, error)
+
+	/*
+	Refund refund pay
+
+	refund pay
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tradeNo trade no
+	@return ApiRefundRequest
+	*/
+	Refund(ctx context.Context, tradeNo string) ApiRefundRequest
+
+	// RefundExecute executes the request
+	//  @return ModelsWechatRefundDetail
+	RefundExecute(r ApiRefundRequest) (*ModelsWechatRefundDetail, *http.Response, error)
 }
 
 // OrdersApiService OrdersApi service
 type OrdersApiService service
 
+type ApiCloseRequest struct {
+	ctx context.Context
+	ApiService OrdersApi
+	tradeNo string
+}
+
+func (r ApiCloseRequest) Execute() (*ModelsWechatOrderDetail, *http.Response, error) {
+	return r.ApiService.CloseExecute(r)
+}
+
+/*
+Close close order
+
+close order
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param tradeNo trade no
+ @return ApiCloseRequest
+*/
+func (a *OrdersApiService) Close(ctx context.Context, tradeNo string) ApiCloseRequest {
+	return ApiCloseRequest{
+		ApiService: a,
+		ctx: ctx,
+		tradeNo: tradeNo,
+	}
+}
+
+// Execute executes the request
+//  @return ModelsWechatOrderDetail
+func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDetail, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ModelsWechatOrderDetail
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.Close")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/orders/wechat/close/{trade_no}"
+	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CnsErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v CnsErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiMakeOrderRequest struct {
 	ctx context.Context
 	ApiService OrdersApi
-	wecahtOrdReq *ServicesMakeWechatOrderReq
+	makeOrdReq *ServicesMakeOrderReq
 }
 
 // make_wechat_order_req
-func (r ApiMakeOrderRequest) WecahtOrdReq(wecahtOrdReq ServicesMakeWechatOrderReq) ApiMakeOrderRequest {
-	r.wecahtOrdReq = &wecahtOrdReq
+func (r ApiMakeOrderRequest) MakeOrdReq(makeOrdReq ServicesMakeOrderReq) ApiMakeOrderRequest {
+	r.makeOrdReq = &makeOrdReq
 	return r
 }
 
@@ -136,8 +288,8 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.wecahtOrdReq == nil {
-		return localVarReturnValue, nil, reportError("wecahtOrdReq is required and must be specified")
+	if r.makeOrdReq == nil {
+		return localVarReturnValue, nil, reportError("makeOrdReq is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -158,7 +310,7 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.wecahtOrdReq
+	localVarPostBody = r.makeOrdReq
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -490,7 +642,7 @@ func (a *OrdersApiService) RefreshPayUrl(ctx context.Context, tradeNo string) Ap
 //  @return ServicesMakeOrderResp
 func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ServicesMakeOrderResp, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *ServicesMakeOrderResp
@@ -525,6 +677,140 @@ func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*Ser
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CnsErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v CnsErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRefundRequest struct {
+	ctx context.Context
+	ApiService OrdersApi
+	tradeNo string
+	refundReq *ServicesRefundReq
+}
+
+// refund_req
+func (r ApiRefundRequest) RefundReq(refundReq ServicesRefundReq) ApiRefundRequest {
+	r.refundReq = &refundReq
+	return r
+}
+
+func (r ApiRefundRequest) Execute() (*ModelsWechatRefundDetail, *http.Response, error) {
+	return r.ApiService.RefundExecute(r)
+}
+
+/*
+Refund refund pay
+
+refund pay
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param tradeNo trade no
+ @return ApiRefundRequest
+*/
+func (a *OrdersApiService) Refund(ctx context.Context, tradeNo string) ApiRefundRequest {
+	return ApiRefundRequest{
+		ApiService: a,
+		ctx: ctx,
+		tradeNo: tradeNo,
+	}
+}
+
+// Execute executes the request
+//  @return ModelsWechatRefundDetail
+func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsWechatRefundDetail, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ModelsWechatRefundDetail
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.Refund")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/orders/wechat/refund/{trade_no}"
+	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.refundReq == nil {
+		return localVarReturnValue, nil, reportError("refundReq is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.refundReq
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

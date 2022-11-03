@@ -12,11 +12,12 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **H5Url** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
+**RefundState** | Pointer to **string** |  | [optional] 
 **TimeExpire** | Pointer to **string** |  | [optional] 
 **TradeNo** | Pointer to **string** |  | [optional] 
-**TradeProvider** | Pointer to **int32** |  | [optional] 
-**TradeState** | Pointer to **int32** |  | [optional] 
-**TradeType** | Pointer to **int32** |  | [optional] 
+**TradeProvider** | Pointer to **string** |  | [optional] 
+**TradeState** | Pointer to **string** |  | [optional] 
+**TradeType** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -238,6 +239,31 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetRefundState
+
+`func (o *ModelsOrder) GetRefundState() string`
+
+GetRefundState returns the RefundState field if non-nil, zero value otherwise.
+
+### GetRefundStateOk
+
+`func (o *ModelsOrder) GetRefundStateOk() (*string, bool)`
+
+GetRefundStateOk returns a tuple with the RefundState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefundState
+
+`func (o *ModelsOrder) SetRefundState(v string)`
+
+SetRefundState sets RefundState field to given value.
+
+### HasRefundState
+
+`func (o *ModelsOrder) HasRefundState() bool`
+
+HasRefundState returns a boolean if a field has been set.
+
 ### GetTimeExpire
 
 `func (o *ModelsOrder) GetTimeExpire() string`
@@ -290,20 +316,20 @@ HasTradeNo returns a boolean if a field has been set.
 
 ### GetTradeProvider
 
-`func (o *ModelsOrder) GetTradeProvider() int32`
+`func (o *ModelsOrder) GetTradeProvider() string`
 
 GetTradeProvider returns the TradeProvider field if non-nil, zero value otherwise.
 
 ### GetTradeProviderOk
 
-`func (o *ModelsOrder) GetTradeProviderOk() (*int32, bool)`
+`func (o *ModelsOrder) GetTradeProviderOk() (*string, bool)`
 
 GetTradeProviderOk returns a tuple with the TradeProvider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradeProvider
 
-`func (o *ModelsOrder) SetTradeProvider(v int32)`
+`func (o *ModelsOrder) SetTradeProvider(v string)`
 
 SetTradeProvider sets TradeProvider field to given value.
 
@@ -315,20 +341,20 @@ HasTradeProvider returns a boolean if a field has been set.
 
 ### GetTradeState
 
-`func (o *ModelsOrder) GetTradeState() int32`
+`func (o *ModelsOrder) GetTradeState() string`
 
 GetTradeState returns the TradeState field if non-nil, zero value otherwise.
 
 ### GetTradeStateOk
 
-`func (o *ModelsOrder) GetTradeStateOk() (*int32, bool)`
+`func (o *ModelsOrder) GetTradeStateOk() (*string, bool)`
 
 GetTradeStateOk returns a tuple with the TradeState field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradeState
 
-`func (o *ModelsOrder) SetTradeState(v int32)`
+`func (o *ModelsOrder) SetTradeState(v string)`
 
 SetTradeState sets TradeState field to given value.
 
@@ -340,20 +366,20 @@ HasTradeState returns a boolean if a field has been set.
 
 ### GetTradeType
 
-`func (o *ModelsOrder) GetTradeType() int32`
+`func (o *ModelsOrder) GetTradeType() string`
 
 GetTradeType returns the TradeType field if non-nil, zero value otherwise.
 
 ### GetTradeTypeOk
 
-`func (o *ModelsOrder) GetTradeTypeOk() (*int32, bool)`
+`func (o *ModelsOrder) GetTradeTypeOk() (*string, bool)`
 
 GetTradeTypeOk returns a tuple with the TradeType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTradeType
 
-`func (o *ModelsOrder) SetTradeType(v int32)`
+`func (o *ModelsOrder) SetTradeType(v string)`
 
 SetTradeType sets TradeType field to given value.
 
