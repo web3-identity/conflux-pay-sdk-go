@@ -1,7 +1,7 @@
 /*
 Rainbow-API
 
-The responses of the open api in swagger focus on the data field rather than the code and the message fields
+Conflux-Pay API documentation
 
 API version: 1.0
 */
@@ -16,6 +16,7 @@ import (
 
 // ServicesRefundReq struct for ServicesRefundReq
 type ServicesRefundReq struct {
+	NotifyUrl *string `json:"notify_url,omitempty"`
 	Reason string `json:"reason"`
 	AdditionalProperties map[string]interface{}
 }
@@ -38,6 +39,38 @@ func NewServicesRefundReq(reason string) *ServicesRefundReq {
 func NewServicesRefundReqWithDefaults() *ServicesRefundReq {
 	this := ServicesRefundReq{}
 	return &this
+}
+
+// GetNotifyUrl returns the NotifyUrl field value if set, zero value otherwise.
+func (o *ServicesRefundReq) GetNotifyUrl() string {
+	if o == nil || o.NotifyUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.NotifyUrl
+}
+
+// GetNotifyUrlOk returns a tuple with the NotifyUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesRefundReq) GetNotifyUrlOk() (*string, bool) {
+	if o == nil || o.NotifyUrl == nil {
+		return nil, false
+	}
+	return o.NotifyUrl, true
+}
+
+// HasNotifyUrl returns a boolean if a field has been set.
+func (o *ServicesRefundReq) HasNotifyUrl() bool {
+	if o != nil && o.NotifyUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNotifyUrl gets a reference to the given string and assigns it to the NotifyUrl field.
+func (o *ServicesRefundReq) SetNotifyUrl(v string) {
+	o.NotifyUrl = &v
 }
 
 // GetReason returns the Reason field value
@@ -66,6 +99,9 @@ func (o *ServicesRefundReq) SetReason(v string) {
 
 func (o ServicesRefundReq) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.NotifyUrl != nil {
+		toSerialize["notify_url"] = o.NotifyUrl
+	}
 	if true {
 		toSerialize["reason"] = o.Reason
 	}
@@ -87,6 +123,7 @@ func (o *ServicesRefundReq) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "notify_url")
 		delete(additionalProperties, "reason")
 		o.AdditionalProperties = additionalProperties
 	}

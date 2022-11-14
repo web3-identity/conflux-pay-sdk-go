@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int32** |  | 
 **Description** | **string** |  | 
+**NotifyUrl** | Pointer to **string** |  | [optional] 
 **TimeExpire** | **int32** |  | 
 **TradeType** | **string** |  | 
 
@@ -67,6 +68,31 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
+
+### GetNotifyUrl
+
+`func (o *ServicesMakeOrderReq) GetNotifyUrl() string`
+
+GetNotifyUrl returns the NotifyUrl field if non-nil, zero value otherwise.
+
+### GetNotifyUrlOk
+
+`func (o *ServicesMakeOrderReq) GetNotifyUrlOk() (*string, bool)`
+
+GetNotifyUrlOk returns a tuple with the NotifyUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotifyUrl
+
+`func (o *ServicesMakeOrderReq) SetNotifyUrl(v string)`
+
+SetNotifyUrl sets NotifyUrl field to given value.
+
+### HasNotifyUrl
+
+`func (o *ServicesMakeOrderReq) HasNotifyUrl() bool`
+
+HasNotifyUrl returns a boolean if a field has been set.
 
 ### GetTimeExpire
 

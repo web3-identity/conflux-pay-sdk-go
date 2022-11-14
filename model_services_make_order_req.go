@@ -1,7 +1,7 @@
 /*
 Rainbow-API
 
-The responses of the open api in swagger focus on the data field rather than the code and the message fields
+Conflux-Pay API documentation
 
 API version: 1.0
 */
@@ -18,6 +18,7 @@ import (
 type ServicesMakeOrderReq struct {
 	Amount int32 `json:"amount"`
 	Description string `json:"description"`
+	NotifyUrl *string `json:"notify_url,omitempty"`
 	TimeExpire int32 `json:"time_expire"`
 	TradeType string `json:"trade_type"`
 	AdditionalProperties map[string]interface{}
@@ -94,6 +95,38 @@ func (o *ServicesMakeOrderReq) SetDescription(v string) {
 	o.Description = v
 }
 
+// GetNotifyUrl returns the NotifyUrl field value if set, zero value otherwise.
+func (o *ServicesMakeOrderReq) GetNotifyUrl() string {
+	if o == nil || o.NotifyUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.NotifyUrl
+}
+
+// GetNotifyUrlOk returns a tuple with the NotifyUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesMakeOrderReq) GetNotifyUrlOk() (*string, bool) {
+	if o == nil || o.NotifyUrl == nil {
+		return nil, false
+	}
+	return o.NotifyUrl, true
+}
+
+// HasNotifyUrl returns a boolean if a field has been set.
+func (o *ServicesMakeOrderReq) HasNotifyUrl() bool {
+	if o != nil && o.NotifyUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNotifyUrl gets a reference to the given string and assigns it to the NotifyUrl field.
+func (o *ServicesMakeOrderReq) SetNotifyUrl(v string) {
+	o.NotifyUrl = &v
+}
+
 // GetTimeExpire returns the TimeExpire field value
 func (o *ServicesMakeOrderReq) GetTimeExpire() int32 {
 	if o == nil {
@@ -150,6 +183,9 @@ func (o ServicesMakeOrderReq) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["description"] = o.Description
 	}
+	if o.NotifyUrl != nil {
+		toSerialize["notify_url"] = o.NotifyUrl
+	}
 	if true {
 		toSerialize["time_expire"] = o.TimeExpire
 	}
@@ -176,6 +212,7 @@ func (o *ServicesMakeOrderReq) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "notify_url")
 		delete(additionalProperties, "time_expire")
 		delete(additionalProperties, "trade_type")
 		o.AdditionalProperties = additionalProperties

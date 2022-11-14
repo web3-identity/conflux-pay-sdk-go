@@ -1,7 +1,7 @@
 /*
 Rainbow-API
 
-The responses of the open api in swagger focus on the data field rather than the code and the message fields
+Conflux-Pay API documentation
 
 API version: 1.0
 */

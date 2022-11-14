@@ -6,12 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **int32** | 单位为分 | [optional] 
 **AppName** | Pointer to **string** |  | [optional] 
+**AppPayNotifyUrl** | Pointer to **string** | 上层应用通知url | [optional] 
+**AppRefundNotifyUrl** | Pointer to **string** | 上层应用通知url | [optional] 
 **CodeUrl** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **DeletedAt** | Pointer to [**GormDeletedAt**](GormDeletedAt.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **H5Url** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **int32** |  | [optional] 
+**IsPayNotifyCompleted** | Pointer to **bool** |  | [optional] 
+**IsRefundNotifyCompleted** | Pointer to **bool** |  | [optional] 
+**PayNotifyCount** | Pointer to **int32** | PayNotifyNextTime    *time.Time &#x60;json:\&quot;pay_notify_next_time\&quot;&#x60; | [optional] 
+**RefundNotifyCount** | Pointer to **int32** | RefundNotifyNextTime    *time.Time &#x60;json:\&quot;refund_notify_next_time\&quot;&#x60; | [optional] 
 **RefundState** | Pointer to **string** |  | [optional] 
 **TimeExpire** | Pointer to **string** |  | [optional] 
 **TradeNo** | Pointer to **string** |  | [optional] 
@@ -88,6 +94,56 @@ SetAppName sets AppName field to given value.
 `func (o *ModelsOrder) HasAppName() bool`
 
 HasAppName returns a boolean if a field has been set.
+
+### GetAppPayNotifyUrl
+
+`func (o *ModelsOrder) GetAppPayNotifyUrl() string`
+
+GetAppPayNotifyUrl returns the AppPayNotifyUrl field if non-nil, zero value otherwise.
+
+### GetAppPayNotifyUrlOk
+
+`func (o *ModelsOrder) GetAppPayNotifyUrlOk() (*string, bool)`
+
+GetAppPayNotifyUrlOk returns a tuple with the AppPayNotifyUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppPayNotifyUrl
+
+`func (o *ModelsOrder) SetAppPayNotifyUrl(v string)`
+
+SetAppPayNotifyUrl sets AppPayNotifyUrl field to given value.
+
+### HasAppPayNotifyUrl
+
+`func (o *ModelsOrder) HasAppPayNotifyUrl() bool`
+
+HasAppPayNotifyUrl returns a boolean if a field has been set.
+
+### GetAppRefundNotifyUrl
+
+`func (o *ModelsOrder) GetAppRefundNotifyUrl() string`
+
+GetAppRefundNotifyUrl returns the AppRefundNotifyUrl field if non-nil, zero value otherwise.
+
+### GetAppRefundNotifyUrlOk
+
+`func (o *ModelsOrder) GetAppRefundNotifyUrlOk() (*string, bool)`
+
+GetAppRefundNotifyUrlOk returns a tuple with the AppRefundNotifyUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppRefundNotifyUrl
+
+`func (o *ModelsOrder) SetAppRefundNotifyUrl(v string)`
+
+SetAppRefundNotifyUrl sets AppRefundNotifyUrl field to given value.
+
+### HasAppRefundNotifyUrl
+
+`func (o *ModelsOrder) HasAppRefundNotifyUrl() bool`
+
+HasAppRefundNotifyUrl returns a boolean if a field has been set.
 
 ### GetCodeUrl
 
@@ -238,6 +294,106 @@ SetId sets Id field to given value.
 `func (o *ModelsOrder) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetIsPayNotifyCompleted
+
+`func (o *ModelsOrder) GetIsPayNotifyCompleted() bool`
+
+GetIsPayNotifyCompleted returns the IsPayNotifyCompleted field if non-nil, zero value otherwise.
+
+### GetIsPayNotifyCompletedOk
+
+`func (o *ModelsOrder) GetIsPayNotifyCompletedOk() (*bool, bool)`
+
+GetIsPayNotifyCompletedOk returns a tuple with the IsPayNotifyCompleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsPayNotifyCompleted
+
+`func (o *ModelsOrder) SetIsPayNotifyCompleted(v bool)`
+
+SetIsPayNotifyCompleted sets IsPayNotifyCompleted field to given value.
+
+### HasIsPayNotifyCompleted
+
+`func (o *ModelsOrder) HasIsPayNotifyCompleted() bool`
+
+HasIsPayNotifyCompleted returns a boolean if a field has been set.
+
+### GetIsRefundNotifyCompleted
+
+`func (o *ModelsOrder) GetIsRefundNotifyCompleted() bool`
+
+GetIsRefundNotifyCompleted returns the IsRefundNotifyCompleted field if non-nil, zero value otherwise.
+
+### GetIsRefundNotifyCompletedOk
+
+`func (o *ModelsOrder) GetIsRefundNotifyCompletedOk() (*bool, bool)`
+
+GetIsRefundNotifyCompletedOk returns a tuple with the IsRefundNotifyCompleted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsRefundNotifyCompleted
+
+`func (o *ModelsOrder) SetIsRefundNotifyCompleted(v bool)`
+
+SetIsRefundNotifyCompleted sets IsRefundNotifyCompleted field to given value.
+
+### HasIsRefundNotifyCompleted
+
+`func (o *ModelsOrder) HasIsRefundNotifyCompleted() bool`
+
+HasIsRefundNotifyCompleted returns a boolean if a field has been set.
+
+### GetPayNotifyCount
+
+`func (o *ModelsOrder) GetPayNotifyCount() int32`
+
+GetPayNotifyCount returns the PayNotifyCount field if non-nil, zero value otherwise.
+
+### GetPayNotifyCountOk
+
+`func (o *ModelsOrder) GetPayNotifyCountOk() (*int32, bool)`
+
+GetPayNotifyCountOk returns a tuple with the PayNotifyCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPayNotifyCount
+
+`func (o *ModelsOrder) SetPayNotifyCount(v int32)`
+
+SetPayNotifyCount sets PayNotifyCount field to given value.
+
+### HasPayNotifyCount
+
+`func (o *ModelsOrder) HasPayNotifyCount() bool`
+
+HasPayNotifyCount returns a boolean if a field has been set.
+
+### GetRefundNotifyCount
+
+`func (o *ModelsOrder) GetRefundNotifyCount() int32`
+
+GetRefundNotifyCount returns the RefundNotifyCount field if non-nil, zero value otherwise.
+
+### GetRefundNotifyCountOk
+
+`func (o *ModelsOrder) GetRefundNotifyCountOk() (*int32, bool)`
+
+GetRefundNotifyCountOk returns a tuple with the RefundNotifyCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRefundNotifyCount
+
+`func (o *ModelsOrder) SetRefundNotifyCount(v int32)`
+
+SetRefundNotifyCount sets RefundNotifyCount field to given value.
+
+### HasRefundNotifyCount
+
+`func (o *ModelsOrder) HasRefundNotifyCount() bool`
+
+HasRefundNotifyCount returns a boolean if a field has been set.
 
 ### GetRefundState
 

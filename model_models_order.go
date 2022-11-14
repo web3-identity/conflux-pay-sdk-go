@@ -1,7 +1,7 @@
 /*
 Rainbow-API
 
-The responses of the open api in swagger focus on the data field rather than the code and the message fields
+Conflux-Pay API documentation
 
 API version: 1.0
 */
@@ -19,12 +19,22 @@ type ModelsOrder struct {
 	// 单位为分
 	Amount *int32 `json:"amount,omitempty"`
 	AppName *string `json:"appName,omitempty"`
+	// 上层应用通知url
+	AppPayNotifyUrl *string `json:"app_pay_notify_url,omitempty"`
+	// 上层应用通知url
+	AppRefundNotifyUrl *string `json:"app_refund_notify_url,omitempty"`
 	CodeUrl *string `json:"code_url,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	DeletedAt *GormDeletedAt `json:"deleted_at,omitempty"`
 	Description *string `json:"description,omitempty"`
 	H5Url *string `json:"h5_url,omitempty"`
 	Id *int32 `json:"id,omitempty"`
+	IsPayNotifyCompleted *bool `json:"is_pay_notify_completed,omitempty"`
+	IsRefundNotifyCompleted *bool `json:"is_refund_notify_completed,omitempty"`
+	// PayNotifyNextTime    *time.Time `json:\"pay_notify_next_time\"`
+	PayNotifyCount *int32 `json:"pay_notify_count,omitempty"`
+	// RefundNotifyNextTime    *time.Time `json:\"refund_notify_next_time\"`
+	RefundNotifyCount *int32 `json:"refund_notify_count,omitempty"`
 	RefundState *string `json:"refund_state,omitempty"`
 	TimeExpire *string `json:"time_expire,omitempty"`
 	TradeNo *string `json:"trade_no,omitempty"`
@@ -116,6 +126,70 @@ func (o *ModelsOrder) HasAppName() bool {
 // SetAppName gets a reference to the given string and assigns it to the AppName field.
 func (o *ModelsOrder) SetAppName(v string) {
 	o.AppName = &v
+}
+
+// GetAppPayNotifyUrl returns the AppPayNotifyUrl field value if set, zero value otherwise.
+func (o *ModelsOrder) GetAppPayNotifyUrl() string {
+	if o == nil || o.AppPayNotifyUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.AppPayNotifyUrl
+}
+
+// GetAppPayNotifyUrlOk returns a tuple with the AppPayNotifyUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetAppPayNotifyUrlOk() (*string, bool) {
+	if o == nil || o.AppPayNotifyUrl == nil {
+		return nil, false
+	}
+	return o.AppPayNotifyUrl, true
+}
+
+// HasAppPayNotifyUrl returns a boolean if a field has been set.
+func (o *ModelsOrder) HasAppPayNotifyUrl() bool {
+	if o != nil && o.AppPayNotifyUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAppPayNotifyUrl gets a reference to the given string and assigns it to the AppPayNotifyUrl field.
+func (o *ModelsOrder) SetAppPayNotifyUrl(v string) {
+	o.AppPayNotifyUrl = &v
+}
+
+// GetAppRefundNotifyUrl returns the AppRefundNotifyUrl field value if set, zero value otherwise.
+func (o *ModelsOrder) GetAppRefundNotifyUrl() string {
+	if o == nil || o.AppRefundNotifyUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.AppRefundNotifyUrl
+}
+
+// GetAppRefundNotifyUrlOk returns a tuple with the AppRefundNotifyUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetAppRefundNotifyUrlOk() (*string, bool) {
+	if o == nil || o.AppRefundNotifyUrl == nil {
+		return nil, false
+	}
+	return o.AppRefundNotifyUrl, true
+}
+
+// HasAppRefundNotifyUrl returns a boolean if a field has been set.
+func (o *ModelsOrder) HasAppRefundNotifyUrl() bool {
+	if o != nil && o.AppRefundNotifyUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAppRefundNotifyUrl gets a reference to the given string and assigns it to the AppRefundNotifyUrl field.
+func (o *ModelsOrder) SetAppRefundNotifyUrl(v string) {
+	o.AppRefundNotifyUrl = &v
 }
 
 // GetCodeUrl returns the CodeUrl field value if set, zero value otherwise.
@@ -308,6 +382,134 @@ func (o *ModelsOrder) HasId() bool {
 // SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *ModelsOrder) SetId(v int32) {
 	o.Id = &v
+}
+
+// GetIsPayNotifyCompleted returns the IsPayNotifyCompleted field value if set, zero value otherwise.
+func (o *ModelsOrder) GetIsPayNotifyCompleted() bool {
+	if o == nil || o.IsPayNotifyCompleted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsPayNotifyCompleted
+}
+
+// GetIsPayNotifyCompletedOk returns a tuple with the IsPayNotifyCompleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetIsPayNotifyCompletedOk() (*bool, bool) {
+	if o == nil || o.IsPayNotifyCompleted == nil {
+		return nil, false
+	}
+	return o.IsPayNotifyCompleted, true
+}
+
+// HasIsPayNotifyCompleted returns a boolean if a field has been set.
+func (o *ModelsOrder) HasIsPayNotifyCompleted() bool {
+	if o != nil && o.IsPayNotifyCompleted != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPayNotifyCompleted gets a reference to the given bool and assigns it to the IsPayNotifyCompleted field.
+func (o *ModelsOrder) SetIsPayNotifyCompleted(v bool) {
+	o.IsPayNotifyCompleted = &v
+}
+
+// GetIsRefundNotifyCompleted returns the IsRefundNotifyCompleted field value if set, zero value otherwise.
+func (o *ModelsOrder) GetIsRefundNotifyCompleted() bool {
+	if o == nil || o.IsRefundNotifyCompleted == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsRefundNotifyCompleted
+}
+
+// GetIsRefundNotifyCompletedOk returns a tuple with the IsRefundNotifyCompleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetIsRefundNotifyCompletedOk() (*bool, bool) {
+	if o == nil || o.IsRefundNotifyCompleted == nil {
+		return nil, false
+	}
+	return o.IsRefundNotifyCompleted, true
+}
+
+// HasIsRefundNotifyCompleted returns a boolean if a field has been set.
+func (o *ModelsOrder) HasIsRefundNotifyCompleted() bool {
+	if o != nil && o.IsRefundNotifyCompleted != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsRefundNotifyCompleted gets a reference to the given bool and assigns it to the IsRefundNotifyCompleted field.
+func (o *ModelsOrder) SetIsRefundNotifyCompleted(v bool) {
+	o.IsRefundNotifyCompleted = &v
+}
+
+// GetPayNotifyCount returns the PayNotifyCount field value if set, zero value otherwise.
+func (o *ModelsOrder) GetPayNotifyCount() int32 {
+	if o == nil || o.PayNotifyCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.PayNotifyCount
+}
+
+// GetPayNotifyCountOk returns a tuple with the PayNotifyCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetPayNotifyCountOk() (*int32, bool) {
+	if o == nil || o.PayNotifyCount == nil {
+		return nil, false
+	}
+	return o.PayNotifyCount, true
+}
+
+// HasPayNotifyCount returns a boolean if a field has been set.
+func (o *ModelsOrder) HasPayNotifyCount() bool {
+	if o != nil && o.PayNotifyCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPayNotifyCount gets a reference to the given int32 and assigns it to the PayNotifyCount field.
+func (o *ModelsOrder) SetPayNotifyCount(v int32) {
+	o.PayNotifyCount = &v
+}
+
+// GetRefundNotifyCount returns the RefundNotifyCount field value if set, zero value otherwise.
+func (o *ModelsOrder) GetRefundNotifyCount() int32 {
+	if o == nil || o.RefundNotifyCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.RefundNotifyCount
+}
+
+// GetRefundNotifyCountOk returns a tuple with the RefundNotifyCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetRefundNotifyCountOk() (*int32, bool) {
+	if o == nil || o.RefundNotifyCount == nil {
+		return nil, false
+	}
+	return o.RefundNotifyCount, true
+}
+
+// HasRefundNotifyCount returns a boolean if a field has been set.
+func (o *ModelsOrder) HasRefundNotifyCount() bool {
+	if o != nil && o.RefundNotifyCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRefundNotifyCount gets a reference to the given int32 and assigns it to the RefundNotifyCount field.
+func (o *ModelsOrder) SetRefundNotifyCount(v int32) {
+	o.RefundNotifyCount = &v
 }
 
 // GetRefundState returns the RefundState field value if set, zero value otherwise.
@@ -542,6 +744,12 @@ func (o ModelsOrder) MarshalJSON() ([]byte, error) {
 	if o.AppName != nil {
 		toSerialize["appName"] = o.AppName
 	}
+	if o.AppPayNotifyUrl != nil {
+		toSerialize["app_pay_notify_url"] = o.AppPayNotifyUrl
+	}
+	if o.AppRefundNotifyUrl != nil {
+		toSerialize["app_refund_notify_url"] = o.AppRefundNotifyUrl
+	}
 	if o.CodeUrl != nil {
 		toSerialize["code_url"] = o.CodeUrl
 	}
@@ -559,6 +767,18 @@ func (o ModelsOrder) MarshalJSON() ([]byte, error) {
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.IsPayNotifyCompleted != nil {
+		toSerialize["is_pay_notify_completed"] = o.IsPayNotifyCompleted
+	}
+	if o.IsRefundNotifyCompleted != nil {
+		toSerialize["is_refund_notify_completed"] = o.IsRefundNotifyCompleted
+	}
+	if o.PayNotifyCount != nil {
+		toSerialize["pay_notify_count"] = o.PayNotifyCount
+	}
+	if o.RefundNotifyCount != nil {
+		toSerialize["refund_notify_count"] = o.RefundNotifyCount
 	}
 	if o.RefundState != nil {
 		toSerialize["refund_state"] = o.RefundState
@@ -601,12 +821,18 @@ func (o *ModelsOrder) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "appName")
+		delete(additionalProperties, "app_pay_notify_url")
+		delete(additionalProperties, "app_refund_notify_url")
 		delete(additionalProperties, "code_url")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "deleted_at")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "h5_url")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "is_pay_notify_completed")
+		delete(additionalProperties, "is_refund_notify_completed")
+		delete(additionalProperties, "pay_notify_count")
+		delete(additionalProperties, "refund_notify_count")
 		delete(additionalProperties, "refund_state")
 		delete(additionalProperties, "time_expire")
 		delete(additionalProperties, "trade_no")
