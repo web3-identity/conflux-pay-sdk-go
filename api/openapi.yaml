@@ -244,13 +244,13 @@ components:
         amount: 0
         time_expire: time_expire
         trade_state: trade_state
-        appName: appName
         created_at: created_at
         description: description
         trade_provider: trade_provider
         deleted_at:
           valid: true
           time: time
+        app_name: app_name
         is_refund_notify_completed: true
         app_refund_notify_url: app_refund_notify_url
         h5_url: h5_url
@@ -267,7 +267,7 @@ components:
         amount:
           description: 单位为分
           type: integer
-        appName:
+        app_name:
           type: string
         app_pay_notify_url:
           description: 上层应用通知url

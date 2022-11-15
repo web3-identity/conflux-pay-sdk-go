@@ -18,7 +18,7 @@ import (
 type ModelsOrder struct {
 	// 单位为分
 	Amount *int32 `json:"amount,omitempty"`
-	AppName *string `json:"appName,omitempty"`
+	AppName *string `json:"app_name,omitempty"`
 	// 上层应用通知url
 	AppPayNotifyUrl *string `json:"app_pay_notify_url,omitempty"`
 	// 上层应用通知url
@@ -742,7 +742,7 @@ func (o ModelsOrder) MarshalJSON() ([]byte, error) {
 		toSerialize["amount"] = o.Amount
 	}
 	if o.AppName != nil {
-		toSerialize["appName"] = o.AppName
+		toSerialize["app_name"] = o.AppName
 	}
 	if o.AppPayNotifyUrl != nil {
 		toSerialize["app_pay_notify_url"] = o.AppPayNotifyUrl
@@ -820,7 +820,7 @@ func (o *ModelsOrder) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
-		delete(additionalProperties, "appName")
+		delete(additionalProperties, "app_name")
 		delete(additionalProperties, "app_pay_notify_url")
 		delete(additionalProperties, "app_refund_notify_url")
 		delete(additionalProperties, "code_url")
