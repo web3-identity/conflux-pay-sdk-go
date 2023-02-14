@@ -4,18 +4,17 @@ All URIs are relative to *http://127.0.0.1:8080/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Close**](OrdersApi.md#Close) | **Put** /orders/wechat/close/{trade_no} | close order
-[**MakeOrder**](OrdersApi.md#MakeOrder) | **Post** /orders/wechat | Make Order
-[**QueryOrderSummary**](OrdersApi.md#QueryOrderSummary) | **Get** /orders/summary/{trade_no} | query order summary by trade no
-[**QueryWechatOrderDetail**](OrdersApi.md#QueryWechatOrderDetail) | **Get** /orders/wechat/{trade_no} | query order by trade no
-[**RefreshPayUrl**](OrdersApi.md#RefreshPayUrl) | **Put** /orders/wechat/refresh-url/{trade_no} | refresh pay url
-[**Refund**](OrdersApi.md#Refund) | **Put** /orders/wechat/refund/{trade_no} | refund pay
+[**Close**](OrdersApi.md#Close) | **Put** /orders/close/{trade_no} | close order
+[**MakeOrder**](OrdersApi.md#MakeOrder) | **Post** /orders | Make Order
+[**QueryOrder**](OrdersApi.md#QueryOrder) | **Get** /orders/{trade_no} | query order by trade no
+[**RefreshPayUrl**](OrdersApi.md#RefreshPayUrl) | **Put** /orders/refresh-url/{trade_no} | refresh pay url
+[**Refund**](OrdersApi.md#Refund) | **Put** /orders/refund/{trade_no} | refund pay
 
 
 
 ## Close
 
-> ModelsWechatOrderDetail Close(ctx, tradeNo).Execute()
+> ModelsOrderCore Close(ctx, tradeNo).Execute()
 
 close order
 
@@ -43,7 +42,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.Close``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Close`: ModelsWechatOrderDetail
+    // response from `Close`: ModelsOrderCore
     fmt.Fprintf(os.Stdout, "Response from `OrdersApi.Close`: %v\n", resp)
 }
 ```
@@ -67,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ModelsWechatOrderDetail**](ModelsWechatOrderDetail.md)
+[**ModelsOrderCore**](ModelsOrderCore.md)
 
 ### Authorization
 
@@ -104,7 +103,7 @@ import (
 )
 
 func main() {
-    makeOrdReq := *openapiclient.NewServicesMakeOrderReq(int32(123), "Description_example", int32(123), "TradeType_example") // ServicesMakeOrderReq | make_wechat_order_req
+    makeOrdReq := *openapiclient.NewServicesMakeOrderReq(int32(123), "Description_example", int32(123), "TradeProvider_example", "TradeType_example") // ServicesMakeOrderReq | make_wechat_order_req
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -149,79 +148,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## QueryOrderSummary
+## QueryOrder
 
-> ModelsOrder QueryOrderSummary(ctx, tradeNo).Execute()
-
-query order summary by trade no
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    tradeNo := "tradeNo_example" // string | trade no
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.QueryOrderSummary(context.Background(), tradeNo).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.QueryOrderSummary``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `QueryOrderSummary`: ModelsOrder
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.QueryOrderSummary`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tradeNo** | **string** | trade no | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiQueryOrderSummaryRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ModelsOrder**](ModelsOrder.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## QueryWechatOrderDetail
-
-> ModelsWechatOrderDetail QueryWechatOrderDetail(ctx, tradeNo).Execute()
+> ModelsOrder QueryOrder(ctx, tradeNo).Execute()
 
 query order by trade no
 
@@ -244,13 +173,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrdersApi.QueryWechatOrderDetail(context.Background(), tradeNo).Execute()
+    resp, r, err := apiClient.OrdersApi.QueryOrder(context.Background(), tradeNo).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.QueryWechatOrderDetail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.QueryOrder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `QueryWechatOrderDetail`: ModelsWechatOrderDetail
-    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.QueryWechatOrderDetail`: %v\n", resp)
+    // response from `QueryOrder`: ModelsOrder
+    fmt.Fprintf(os.Stdout, "Response from `OrdersApi.QueryOrder`: %v\n", resp)
 }
 ```
 
@@ -264,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiQueryWechatOrderDetailRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiQueryOrderRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -273,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ModelsWechatOrderDetail**](ModelsWechatOrderDetail.md)
+[**ModelsOrder**](ModelsOrder.md)
 
 ### Authorization
 
@@ -361,7 +290,7 @@ No authorization required
 
 ## Refund
 
-> ModelsWechatRefundDetail Refund(ctx, tradeNo).RefundReq(refundReq).Execute()
+> ModelsOrderCore Refund(ctx, tradeNo).RefundReq(refundReq).Execute()
 
 refund pay
 
@@ -390,7 +319,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.Refund``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `Refund`: ModelsWechatRefundDetail
+    // response from `Refund`: ModelsOrderCore
     fmt.Fprintf(os.Stdout, "Response from `OrdersApi.Refund`: %v\n", resp)
 }
 ```
@@ -415,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ModelsWechatRefundDetail**](ModelsWechatRefundDetail.md)
+[**ModelsOrderCore**](ModelsOrderCore.md)
 
 ### Authorization
 

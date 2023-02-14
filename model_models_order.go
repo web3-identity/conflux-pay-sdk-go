@@ -33,9 +33,15 @@ type ModelsOrder struct {
 	IsRefundNotifyCompleted *bool `json:"is_refund_notify_completed,omitempty"`
 	// PayNotifyNextTime    *time.Time `json:\"pay_notify_next_time\"`
 	PayNotifyCount *int32 `json:"pay_notify_count,omitempty"`
+	// 二维码宽度。 只有alipay，且 trade type 为 h5 模式有效，qr pay mode 为4 时有效； 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
+	QrCodeWidth *string `json:"qr_code_width,omitempty"`
+	// 支付二维码模式。 只有alipay，且 trade type 为 h5 模式有效; 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
+	QrPayMode *string `json:"qr_pay_mode,omitempty"`
 	// RefundNotifyNextTime    *time.Time `json:\"refund_notify_next_time\"`
 	RefundNotifyCount *int32 `json:"refund_notify_count,omitempty"`
 	RefundState *string `json:"refund_state,omitempty"`
+	// 付款成功后的跳转链接。只有alipay，且 trade type 为 h5 模式有效; 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
+	ReturnUrl *string `json:"return_url,omitempty"`
 	TimeExpire *string `json:"time_expire,omitempty"`
 	TradeNo *string `json:"trade_no,omitempty"`
 	TradeProvider *string `json:"trade_provider,omitempty"`
@@ -66,7 +72,7 @@ func NewModelsOrderWithDefaults() *ModelsOrder {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ModelsOrder) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil || isNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -76,15 +82,15 @@ func (o *ModelsOrder) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
+	if o == nil || isNil(o.Amount) {
+    return nil, false
 	}
 	return o.Amount, true
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ModelsOrder) HasAmount() bool {
-	if o != nil && o.Amount != nil {
+	if o != nil && !isNil(o.Amount) {
 		return true
 	}
 
@@ -98,7 +104,7 @@ func (o *ModelsOrder) SetAmount(v int32) {
 
 // GetAppName returns the AppName field value if set, zero value otherwise.
 func (o *ModelsOrder) GetAppName() string {
-	if o == nil || o.AppName == nil {
+	if o == nil || isNil(o.AppName) {
 		var ret string
 		return ret
 	}
@@ -108,15 +114,15 @@ func (o *ModelsOrder) GetAppName() string {
 // GetAppNameOk returns a tuple with the AppName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAppNameOk() (*string, bool) {
-	if o == nil || o.AppName == nil {
-		return nil, false
+	if o == nil || isNil(o.AppName) {
+    return nil, false
 	}
 	return o.AppName, true
 }
 
 // HasAppName returns a boolean if a field has been set.
 func (o *ModelsOrder) HasAppName() bool {
-	if o != nil && o.AppName != nil {
+	if o != nil && !isNil(o.AppName) {
 		return true
 	}
 
@@ -130,7 +136,7 @@ func (o *ModelsOrder) SetAppName(v string) {
 
 // GetAppPayNotifyUrl returns the AppPayNotifyUrl field value if set, zero value otherwise.
 func (o *ModelsOrder) GetAppPayNotifyUrl() string {
-	if o == nil || o.AppPayNotifyUrl == nil {
+	if o == nil || isNil(o.AppPayNotifyUrl) {
 		var ret string
 		return ret
 	}
@@ -140,15 +146,15 @@ func (o *ModelsOrder) GetAppPayNotifyUrl() string {
 // GetAppPayNotifyUrlOk returns a tuple with the AppPayNotifyUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAppPayNotifyUrlOk() (*string, bool) {
-	if o == nil || o.AppPayNotifyUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.AppPayNotifyUrl) {
+    return nil, false
 	}
 	return o.AppPayNotifyUrl, true
 }
 
 // HasAppPayNotifyUrl returns a boolean if a field has been set.
 func (o *ModelsOrder) HasAppPayNotifyUrl() bool {
-	if o != nil && o.AppPayNotifyUrl != nil {
+	if o != nil && !isNil(o.AppPayNotifyUrl) {
 		return true
 	}
 
@@ -162,7 +168,7 @@ func (o *ModelsOrder) SetAppPayNotifyUrl(v string) {
 
 // GetAppRefundNotifyUrl returns the AppRefundNotifyUrl field value if set, zero value otherwise.
 func (o *ModelsOrder) GetAppRefundNotifyUrl() string {
-	if o == nil || o.AppRefundNotifyUrl == nil {
+	if o == nil || isNil(o.AppRefundNotifyUrl) {
 		var ret string
 		return ret
 	}
@@ -172,15 +178,15 @@ func (o *ModelsOrder) GetAppRefundNotifyUrl() string {
 // GetAppRefundNotifyUrlOk returns a tuple with the AppRefundNotifyUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAppRefundNotifyUrlOk() (*string, bool) {
-	if o == nil || o.AppRefundNotifyUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.AppRefundNotifyUrl) {
+    return nil, false
 	}
 	return o.AppRefundNotifyUrl, true
 }
 
 // HasAppRefundNotifyUrl returns a boolean if a field has been set.
 func (o *ModelsOrder) HasAppRefundNotifyUrl() bool {
-	if o != nil && o.AppRefundNotifyUrl != nil {
+	if o != nil && !isNil(o.AppRefundNotifyUrl) {
 		return true
 	}
 
@@ -194,7 +200,7 @@ func (o *ModelsOrder) SetAppRefundNotifyUrl(v string) {
 
 // GetCodeUrl returns the CodeUrl field value if set, zero value otherwise.
 func (o *ModelsOrder) GetCodeUrl() string {
-	if o == nil || o.CodeUrl == nil {
+	if o == nil || isNil(o.CodeUrl) {
 		var ret string
 		return ret
 	}
@@ -204,15 +210,15 @@ func (o *ModelsOrder) GetCodeUrl() string {
 // GetCodeUrlOk returns a tuple with the CodeUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetCodeUrlOk() (*string, bool) {
-	if o == nil || o.CodeUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.CodeUrl) {
+    return nil, false
 	}
 	return o.CodeUrl, true
 }
 
 // HasCodeUrl returns a boolean if a field has been set.
 func (o *ModelsOrder) HasCodeUrl() bool {
-	if o != nil && o.CodeUrl != nil {
+	if o != nil && !isNil(o.CodeUrl) {
 		return true
 	}
 
@@ -226,7 +232,7 @@ func (o *ModelsOrder) SetCodeUrl(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ModelsOrder) GetCreatedAt() string {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
@@ -236,15 +242,15 @@ func (o *ModelsOrder) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetCreatedAtOk() (*string, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.CreatedAt) {
+    return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ModelsOrder) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -258,7 +264,7 @@ func (o *ModelsOrder) SetCreatedAt(v string) {
 
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *ModelsOrder) GetDeletedAt() GormDeletedAt {
-	if o == nil || o.DeletedAt == nil {
+	if o == nil || isNil(o.DeletedAt) {
 		var ret GormDeletedAt
 		return ret
 	}
@@ -268,15 +274,15 @@ func (o *ModelsOrder) GetDeletedAt() GormDeletedAt {
 // GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetDeletedAtOk() (*GormDeletedAt, bool) {
-	if o == nil || o.DeletedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.DeletedAt) {
+    return nil, false
 	}
 	return o.DeletedAt, true
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
 func (o *ModelsOrder) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt != nil {
+	if o != nil && !isNil(o.DeletedAt) {
 		return true
 	}
 
@@ -290,7 +296,7 @@ func (o *ModelsOrder) SetDeletedAt(v GormDeletedAt) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ModelsOrder) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || isNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -300,15 +306,15 @@ func (o *ModelsOrder) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
+	if o == nil || isNil(o.Description) {
+    return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ModelsOrder) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !isNil(o.Description) {
 		return true
 	}
 
@@ -322,7 +328,7 @@ func (o *ModelsOrder) SetDescription(v string) {
 
 // GetH5Url returns the H5Url field value if set, zero value otherwise.
 func (o *ModelsOrder) GetH5Url() string {
-	if o == nil || o.H5Url == nil {
+	if o == nil || isNil(o.H5Url) {
 		var ret string
 		return ret
 	}
@@ -332,15 +338,15 @@ func (o *ModelsOrder) GetH5Url() string {
 // GetH5UrlOk returns a tuple with the H5Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetH5UrlOk() (*string, bool) {
-	if o == nil || o.H5Url == nil {
-		return nil, false
+	if o == nil || isNil(o.H5Url) {
+    return nil, false
 	}
 	return o.H5Url, true
 }
 
 // HasH5Url returns a boolean if a field has been set.
 func (o *ModelsOrder) HasH5Url() bool {
-	if o != nil && o.H5Url != nil {
+	if o != nil && !isNil(o.H5Url) {
 		return true
 	}
 
@@ -354,7 +360,7 @@ func (o *ModelsOrder) SetH5Url(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ModelsOrder) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -364,15 +370,15 @@ func (o *ModelsOrder) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
+	if o == nil || isNil(o.Id) {
+    return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ModelsOrder) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -386,7 +392,7 @@ func (o *ModelsOrder) SetId(v int32) {
 
 // GetIsPayNotifyCompleted returns the IsPayNotifyCompleted field value if set, zero value otherwise.
 func (o *ModelsOrder) GetIsPayNotifyCompleted() bool {
-	if o == nil || o.IsPayNotifyCompleted == nil {
+	if o == nil || isNil(o.IsPayNotifyCompleted) {
 		var ret bool
 		return ret
 	}
@@ -396,15 +402,15 @@ func (o *ModelsOrder) GetIsPayNotifyCompleted() bool {
 // GetIsPayNotifyCompletedOk returns a tuple with the IsPayNotifyCompleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetIsPayNotifyCompletedOk() (*bool, bool) {
-	if o == nil || o.IsPayNotifyCompleted == nil {
-		return nil, false
+	if o == nil || isNil(o.IsPayNotifyCompleted) {
+    return nil, false
 	}
 	return o.IsPayNotifyCompleted, true
 }
 
 // HasIsPayNotifyCompleted returns a boolean if a field has been set.
 func (o *ModelsOrder) HasIsPayNotifyCompleted() bool {
-	if o != nil && o.IsPayNotifyCompleted != nil {
+	if o != nil && !isNil(o.IsPayNotifyCompleted) {
 		return true
 	}
 
@@ -418,7 +424,7 @@ func (o *ModelsOrder) SetIsPayNotifyCompleted(v bool) {
 
 // GetIsRefundNotifyCompleted returns the IsRefundNotifyCompleted field value if set, zero value otherwise.
 func (o *ModelsOrder) GetIsRefundNotifyCompleted() bool {
-	if o == nil || o.IsRefundNotifyCompleted == nil {
+	if o == nil || isNil(o.IsRefundNotifyCompleted) {
 		var ret bool
 		return ret
 	}
@@ -428,15 +434,15 @@ func (o *ModelsOrder) GetIsRefundNotifyCompleted() bool {
 // GetIsRefundNotifyCompletedOk returns a tuple with the IsRefundNotifyCompleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetIsRefundNotifyCompletedOk() (*bool, bool) {
-	if o == nil || o.IsRefundNotifyCompleted == nil {
-		return nil, false
+	if o == nil || isNil(o.IsRefundNotifyCompleted) {
+    return nil, false
 	}
 	return o.IsRefundNotifyCompleted, true
 }
 
 // HasIsRefundNotifyCompleted returns a boolean if a field has been set.
 func (o *ModelsOrder) HasIsRefundNotifyCompleted() bool {
-	if o != nil && o.IsRefundNotifyCompleted != nil {
+	if o != nil && !isNil(o.IsRefundNotifyCompleted) {
 		return true
 	}
 
@@ -450,7 +456,7 @@ func (o *ModelsOrder) SetIsRefundNotifyCompleted(v bool) {
 
 // GetPayNotifyCount returns the PayNotifyCount field value if set, zero value otherwise.
 func (o *ModelsOrder) GetPayNotifyCount() int32 {
-	if o == nil || o.PayNotifyCount == nil {
+	if o == nil || isNil(o.PayNotifyCount) {
 		var ret int32
 		return ret
 	}
@@ -460,15 +466,15 @@ func (o *ModelsOrder) GetPayNotifyCount() int32 {
 // GetPayNotifyCountOk returns a tuple with the PayNotifyCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetPayNotifyCountOk() (*int32, bool) {
-	if o == nil || o.PayNotifyCount == nil {
-		return nil, false
+	if o == nil || isNil(o.PayNotifyCount) {
+    return nil, false
 	}
 	return o.PayNotifyCount, true
 }
 
 // HasPayNotifyCount returns a boolean if a field has been set.
 func (o *ModelsOrder) HasPayNotifyCount() bool {
-	if o != nil && o.PayNotifyCount != nil {
+	if o != nil && !isNil(o.PayNotifyCount) {
 		return true
 	}
 
@@ -480,9 +486,73 @@ func (o *ModelsOrder) SetPayNotifyCount(v int32) {
 	o.PayNotifyCount = &v
 }
 
+// GetQrCodeWidth returns the QrCodeWidth field value if set, zero value otherwise.
+func (o *ModelsOrder) GetQrCodeWidth() string {
+	if o == nil || isNil(o.QrCodeWidth) {
+		var ret string
+		return ret
+	}
+	return *o.QrCodeWidth
+}
+
+// GetQrCodeWidthOk returns a tuple with the QrCodeWidth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetQrCodeWidthOk() (*string, bool) {
+	if o == nil || isNil(o.QrCodeWidth) {
+    return nil, false
+	}
+	return o.QrCodeWidth, true
+}
+
+// HasQrCodeWidth returns a boolean if a field has been set.
+func (o *ModelsOrder) HasQrCodeWidth() bool {
+	if o != nil && !isNil(o.QrCodeWidth) {
+		return true
+	}
+
+	return false
+}
+
+// SetQrCodeWidth gets a reference to the given string and assigns it to the QrCodeWidth field.
+func (o *ModelsOrder) SetQrCodeWidth(v string) {
+	o.QrCodeWidth = &v
+}
+
+// GetQrPayMode returns the QrPayMode field value if set, zero value otherwise.
+func (o *ModelsOrder) GetQrPayMode() string {
+	if o == nil || isNil(o.QrPayMode) {
+		var ret string
+		return ret
+	}
+	return *o.QrPayMode
+}
+
+// GetQrPayModeOk returns a tuple with the QrPayMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetQrPayModeOk() (*string, bool) {
+	if o == nil || isNil(o.QrPayMode) {
+    return nil, false
+	}
+	return o.QrPayMode, true
+}
+
+// HasQrPayMode returns a boolean if a field has been set.
+func (o *ModelsOrder) HasQrPayMode() bool {
+	if o != nil && !isNil(o.QrPayMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetQrPayMode gets a reference to the given string and assigns it to the QrPayMode field.
+func (o *ModelsOrder) SetQrPayMode(v string) {
+	o.QrPayMode = &v
+}
+
 // GetRefundNotifyCount returns the RefundNotifyCount field value if set, zero value otherwise.
 func (o *ModelsOrder) GetRefundNotifyCount() int32 {
-	if o == nil || o.RefundNotifyCount == nil {
+	if o == nil || isNil(o.RefundNotifyCount) {
 		var ret int32
 		return ret
 	}
@@ -492,15 +562,15 @@ func (o *ModelsOrder) GetRefundNotifyCount() int32 {
 // GetRefundNotifyCountOk returns a tuple with the RefundNotifyCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetRefundNotifyCountOk() (*int32, bool) {
-	if o == nil || o.RefundNotifyCount == nil {
-		return nil, false
+	if o == nil || isNil(o.RefundNotifyCount) {
+    return nil, false
 	}
 	return o.RefundNotifyCount, true
 }
 
 // HasRefundNotifyCount returns a boolean if a field has been set.
 func (o *ModelsOrder) HasRefundNotifyCount() bool {
-	if o != nil && o.RefundNotifyCount != nil {
+	if o != nil && !isNil(o.RefundNotifyCount) {
 		return true
 	}
 
@@ -514,7 +584,7 @@ func (o *ModelsOrder) SetRefundNotifyCount(v int32) {
 
 // GetRefundState returns the RefundState field value if set, zero value otherwise.
 func (o *ModelsOrder) GetRefundState() string {
-	if o == nil || o.RefundState == nil {
+	if o == nil || isNil(o.RefundState) {
 		var ret string
 		return ret
 	}
@@ -524,15 +594,15 @@ func (o *ModelsOrder) GetRefundState() string {
 // GetRefundStateOk returns a tuple with the RefundState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetRefundStateOk() (*string, bool) {
-	if o == nil || o.RefundState == nil {
-		return nil, false
+	if o == nil || isNil(o.RefundState) {
+    return nil, false
 	}
 	return o.RefundState, true
 }
 
 // HasRefundState returns a boolean if a field has been set.
 func (o *ModelsOrder) HasRefundState() bool {
-	if o != nil && o.RefundState != nil {
+	if o != nil && !isNil(o.RefundState) {
 		return true
 	}
 
@@ -544,9 +614,41 @@ func (o *ModelsOrder) SetRefundState(v string) {
 	o.RefundState = &v
 }
 
+// GetReturnUrl returns the ReturnUrl field value if set, zero value otherwise.
+func (o *ModelsOrder) GetReturnUrl() string {
+	if o == nil || isNil(o.ReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ReturnUrl
+}
+
+// GetReturnUrlOk returns a tuple with the ReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrder) GetReturnUrlOk() (*string, bool) {
+	if o == nil || isNil(o.ReturnUrl) {
+    return nil, false
+	}
+	return o.ReturnUrl, true
+}
+
+// HasReturnUrl returns a boolean if a field has been set.
+func (o *ModelsOrder) HasReturnUrl() bool {
+	if o != nil && !isNil(o.ReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetReturnUrl gets a reference to the given string and assigns it to the ReturnUrl field.
+func (o *ModelsOrder) SetReturnUrl(v string) {
+	o.ReturnUrl = &v
+}
+
 // GetTimeExpire returns the TimeExpire field value if set, zero value otherwise.
 func (o *ModelsOrder) GetTimeExpire() string {
-	if o == nil || o.TimeExpire == nil {
+	if o == nil || isNil(o.TimeExpire) {
 		var ret string
 		return ret
 	}
@@ -556,15 +658,15 @@ func (o *ModelsOrder) GetTimeExpire() string {
 // GetTimeExpireOk returns a tuple with the TimeExpire field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTimeExpireOk() (*string, bool) {
-	if o == nil || o.TimeExpire == nil {
-		return nil, false
+	if o == nil || isNil(o.TimeExpire) {
+    return nil, false
 	}
 	return o.TimeExpire, true
 }
 
 // HasTimeExpire returns a boolean if a field has been set.
 func (o *ModelsOrder) HasTimeExpire() bool {
-	if o != nil && o.TimeExpire != nil {
+	if o != nil && !isNil(o.TimeExpire) {
 		return true
 	}
 
@@ -578,7 +680,7 @@ func (o *ModelsOrder) SetTimeExpire(v string) {
 
 // GetTradeNo returns the TradeNo field value if set, zero value otherwise.
 func (o *ModelsOrder) GetTradeNo() string {
-	if o == nil || o.TradeNo == nil {
+	if o == nil || isNil(o.TradeNo) {
 		var ret string
 		return ret
 	}
@@ -588,15 +690,15 @@ func (o *ModelsOrder) GetTradeNo() string {
 // GetTradeNoOk returns a tuple with the TradeNo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeNoOk() (*string, bool) {
-	if o == nil || o.TradeNo == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeNo) {
+    return nil, false
 	}
 	return o.TradeNo, true
 }
 
 // HasTradeNo returns a boolean if a field has been set.
 func (o *ModelsOrder) HasTradeNo() bool {
-	if o != nil && o.TradeNo != nil {
+	if o != nil && !isNil(o.TradeNo) {
 		return true
 	}
 
@@ -610,7 +712,7 @@ func (o *ModelsOrder) SetTradeNo(v string) {
 
 // GetTradeProvider returns the TradeProvider field value if set, zero value otherwise.
 func (o *ModelsOrder) GetTradeProvider() string {
-	if o == nil || o.TradeProvider == nil {
+	if o == nil || isNil(o.TradeProvider) {
 		var ret string
 		return ret
 	}
@@ -620,15 +722,15 @@ func (o *ModelsOrder) GetTradeProvider() string {
 // GetTradeProviderOk returns a tuple with the TradeProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeProviderOk() (*string, bool) {
-	if o == nil || o.TradeProvider == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeProvider) {
+    return nil, false
 	}
 	return o.TradeProvider, true
 }
 
 // HasTradeProvider returns a boolean if a field has been set.
 func (o *ModelsOrder) HasTradeProvider() bool {
-	if o != nil && o.TradeProvider != nil {
+	if o != nil && !isNil(o.TradeProvider) {
 		return true
 	}
 
@@ -642,7 +744,7 @@ func (o *ModelsOrder) SetTradeProvider(v string) {
 
 // GetTradeState returns the TradeState field value if set, zero value otherwise.
 func (o *ModelsOrder) GetTradeState() string {
-	if o == nil || o.TradeState == nil {
+	if o == nil || isNil(o.TradeState) {
 		var ret string
 		return ret
 	}
@@ -652,15 +754,15 @@ func (o *ModelsOrder) GetTradeState() string {
 // GetTradeStateOk returns a tuple with the TradeState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeStateOk() (*string, bool) {
-	if o == nil || o.TradeState == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeState) {
+    return nil, false
 	}
 	return o.TradeState, true
 }
 
 // HasTradeState returns a boolean if a field has been set.
 func (o *ModelsOrder) HasTradeState() bool {
-	if o != nil && o.TradeState != nil {
+	if o != nil && !isNil(o.TradeState) {
 		return true
 	}
 
@@ -674,7 +776,7 @@ func (o *ModelsOrder) SetTradeState(v string) {
 
 // GetTradeType returns the TradeType field value if set, zero value otherwise.
 func (o *ModelsOrder) GetTradeType() string {
-	if o == nil || o.TradeType == nil {
+	if o == nil || isNil(o.TradeType) {
 		var ret string
 		return ret
 	}
@@ -684,15 +786,15 @@ func (o *ModelsOrder) GetTradeType() string {
 // GetTradeTypeOk returns a tuple with the TradeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeTypeOk() (*string, bool) {
-	if o == nil || o.TradeType == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeType) {
+    return nil, false
 	}
 	return o.TradeType, true
 }
 
 // HasTradeType returns a boolean if a field has been set.
 func (o *ModelsOrder) HasTradeType() bool {
-	if o != nil && o.TradeType != nil {
+	if o != nil && !isNil(o.TradeType) {
 		return true
 	}
 
@@ -706,7 +808,7 @@ func (o *ModelsOrder) SetTradeType(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ModelsOrder) GetUpdatedAt() string {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
@@ -716,15 +818,15 @@ func (o *ModelsOrder) GetUpdatedAt() string {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetUpdatedAtOk() (*string, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.UpdatedAt) {
+    return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *ModelsOrder) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -738,67 +840,76 @@ func (o *ModelsOrder) SetUpdatedAt(v string) {
 
 func (o ModelsOrder) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.AppName != nil {
+	if !isNil(o.AppName) {
 		toSerialize["app_name"] = o.AppName
 	}
-	if o.AppPayNotifyUrl != nil {
+	if !isNil(o.AppPayNotifyUrl) {
 		toSerialize["app_pay_notify_url"] = o.AppPayNotifyUrl
 	}
-	if o.AppRefundNotifyUrl != nil {
+	if !isNil(o.AppRefundNotifyUrl) {
 		toSerialize["app_refund_notify_url"] = o.AppRefundNotifyUrl
 	}
-	if o.CodeUrl != nil {
+	if !isNil(o.CodeUrl) {
 		toSerialize["code_url"] = o.CodeUrl
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DeletedAt != nil {
+	if !isNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
-	if o.Description != nil {
+	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.H5Url != nil {
+	if !isNil(o.H5Url) {
 		toSerialize["h5_url"] = o.H5Url
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.IsPayNotifyCompleted != nil {
+	if !isNil(o.IsPayNotifyCompleted) {
 		toSerialize["is_pay_notify_completed"] = o.IsPayNotifyCompleted
 	}
-	if o.IsRefundNotifyCompleted != nil {
+	if !isNil(o.IsRefundNotifyCompleted) {
 		toSerialize["is_refund_notify_completed"] = o.IsRefundNotifyCompleted
 	}
-	if o.PayNotifyCount != nil {
+	if !isNil(o.PayNotifyCount) {
 		toSerialize["pay_notify_count"] = o.PayNotifyCount
 	}
-	if o.RefundNotifyCount != nil {
+	if !isNil(o.QrCodeWidth) {
+		toSerialize["qr_code_width"] = o.QrCodeWidth
+	}
+	if !isNil(o.QrPayMode) {
+		toSerialize["qr_pay_mode"] = o.QrPayMode
+	}
+	if !isNil(o.RefundNotifyCount) {
 		toSerialize["refund_notify_count"] = o.RefundNotifyCount
 	}
-	if o.RefundState != nil {
+	if !isNil(o.RefundState) {
 		toSerialize["refund_state"] = o.RefundState
 	}
-	if o.TimeExpire != nil {
+	if !isNil(o.ReturnUrl) {
+		toSerialize["return_url"] = o.ReturnUrl
+	}
+	if !isNil(o.TimeExpire) {
 		toSerialize["time_expire"] = o.TimeExpire
 	}
-	if o.TradeNo != nil {
+	if !isNil(o.TradeNo) {
 		toSerialize["trade_no"] = o.TradeNo
 	}
-	if o.TradeProvider != nil {
+	if !isNil(o.TradeProvider) {
 		toSerialize["trade_provider"] = o.TradeProvider
 	}
-	if o.TradeState != nil {
+	if !isNil(o.TradeState) {
 		toSerialize["trade_state"] = o.TradeState
 	}
-	if o.TradeType != nil {
+	if !isNil(o.TradeType) {
 		toSerialize["trade_type"] = o.TradeType
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 
@@ -832,8 +943,11 @@ func (o *ModelsOrder) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "is_pay_notify_completed")
 		delete(additionalProperties, "is_refund_notify_completed")
 		delete(additionalProperties, "pay_notify_count")
+		delete(additionalProperties, "qr_code_width")
+		delete(additionalProperties, "qr_pay_mode")
 		delete(additionalProperties, "refund_notify_count")
 		delete(additionalProperties, "refund_state")
+		delete(additionalProperties, "return_url")
 		delete(additionalProperties, "time_expire")
 		delete(additionalProperties, "trade_no")
 		delete(additionalProperties, "trade_provider")

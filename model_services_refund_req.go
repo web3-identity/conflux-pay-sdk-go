@@ -43,7 +43,7 @@ func NewServicesRefundReqWithDefaults() *ServicesRefundReq {
 
 // GetNotifyUrl returns the NotifyUrl field value if set, zero value otherwise.
 func (o *ServicesRefundReq) GetNotifyUrl() string {
-	if o == nil || o.NotifyUrl == nil {
+	if o == nil || isNil(o.NotifyUrl) {
 		var ret string
 		return ret
 	}
@@ -53,15 +53,15 @@ func (o *ServicesRefundReq) GetNotifyUrl() string {
 // GetNotifyUrlOk returns a tuple with the NotifyUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesRefundReq) GetNotifyUrlOk() (*string, bool) {
-	if o == nil || o.NotifyUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.NotifyUrl) {
+    return nil, false
 	}
 	return o.NotifyUrl, true
 }
 
 // HasNotifyUrl returns a boolean if a field has been set.
 func (o *ServicesRefundReq) HasNotifyUrl() bool {
-	if o != nil && o.NotifyUrl != nil {
+	if o != nil && !isNil(o.NotifyUrl) {
 		return true
 	}
 
@@ -87,7 +87,7 @@ func (o *ServicesRefundReq) GetReason() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesRefundReq) GetReasonOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Reason, true
 }
@@ -99,7 +99,7 @@ func (o *ServicesRefundReq) SetReason(v string) {
 
 func (o ServicesRefundReq) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.NotifyUrl != nil {
+	if !isNil(o.NotifyUrl) {
 		toSerialize["notify_url"] = o.NotifyUrl
 	}
 	if true {

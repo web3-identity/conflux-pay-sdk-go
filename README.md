@@ -61,7 +61,7 @@ Each operation can use different server URL defined using `OperationServers` map
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
+```golang
 ctx := context.WithValue(context.Background(), confluxpay.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -78,12 +78,11 @@ All URIs are relative to *http://127.0.0.1:8080/v0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OrdersApi* | [**Close**](docs/OrdersApi.md#close) | **Put** /orders/wechat/close/{trade_no} | close order
-*OrdersApi* | [**MakeOrder**](docs/OrdersApi.md#makeorder) | **Post** /orders/wechat | Make Order
-*OrdersApi* | [**QueryOrderSummary**](docs/OrdersApi.md#queryordersummary) | **Get** /orders/summary/{trade_no} | query order summary by trade no
-*OrdersApi* | [**QueryWechatOrderDetail**](docs/OrdersApi.md#querywechatorderdetail) | **Get** /orders/wechat/{trade_no} | query order by trade no
-*OrdersApi* | [**RefreshPayUrl**](docs/OrdersApi.md#refreshpayurl) | **Put** /orders/wechat/refresh-url/{trade_no} | refresh pay url
-*OrdersApi* | [**Refund**](docs/OrdersApi.md#refund) | **Put** /orders/wechat/refund/{trade_no} | refund pay
+*OrdersApi* | [**Close**](docs/OrdersApi.md#close) | **Put** /orders/close/{trade_no} | close order
+*OrdersApi* | [**MakeOrder**](docs/OrdersApi.md#makeorder) | **Post** /orders | Make Order
+*OrdersApi* | [**QueryOrder**](docs/OrdersApi.md#queryorder) | **Get** /orders/{trade_no} | query order by trade no
+*OrdersApi* | [**RefreshPayUrl**](docs/OrdersApi.md#refreshpayurl) | **Put** /orders/refresh-url/{trade_no} | refresh pay url
+*OrdersApi* | [**Refund**](docs/OrdersApi.md#refund) | **Put** /orders/refund/{trade_no} | refund pay
 
 
 ## Documentation For Models
@@ -91,8 +90,7 @@ Class | Method | HTTP request | Description
  - [CnsErrorsRainbowErrorDetailInfo](docs/CnsErrorsRainbowErrorDetailInfo.md)
  - [GormDeletedAt](docs/GormDeletedAt.md)
  - [ModelsOrder](docs/ModelsOrder.md)
- - [ModelsWechatOrderDetail](docs/ModelsWechatOrderDetail.md)
- - [ModelsWechatRefundDetail](docs/ModelsWechatRefundDetail.md)
+ - [ModelsOrderCore](docs/ModelsOrderCore.md)
  - [ServicesMakeOrderReq](docs/ServicesMakeOrderReq.md)
  - [ServicesMakeOrderResp](docs/ServicesMakeOrderResp.md)
  - [ServicesRefundReq](docs/ServicesRefundReq.md)

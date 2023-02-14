@@ -65,7 +65,7 @@ func NewModelsWechatRefundDetailWithDefaults() *ModelsWechatRefundDetail {
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetAmount() int32 {
-	if o == nil || o.Amount == nil {
+	if o == nil || isNil(o.Amount) {
 		var ret int32
 		return ret
 	}
@@ -75,15 +75,15 @@ func (o *ModelsWechatRefundDetail) GetAmount() int32 {
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetAmountOk() (*int32, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
+	if o == nil || isNil(o.Amount) {
+    return nil, false
 	}
 	return o.Amount, true
 }
 
 // HasAmount returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasAmount() bool {
-	if o != nil && o.Amount != nil {
+	if o != nil && !isNil(o.Amount) {
 		return true
 	}
 
@@ -97,7 +97,7 @@ func (o *ModelsWechatRefundDetail) SetAmount(v int32) {
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetChannel() string {
-	if o == nil || o.Channel == nil {
+	if o == nil || isNil(o.Channel) {
 		var ret string
 		return ret
 	}
@@ -107,15 +107,15 @@ func (o *ModelsWechatRefundDetail) GetChannel() string {
 // GetChannelOk returns a tuple with the Channel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetChannelOk() (*string, bool) {
-	if o == nil || o.Channel == nil {
-		return nil, false
+	if o == nil || isNil(o.Channel) {
+    return nil, false
 	}
 	return o.Channel, true
 }
 
 // HasChannel returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasChannel() bool {
-	if o != nil && o.Channel != nil {
+	if o != nil && !isNil(o.Channel) {
 		return true
 	}
 
@@ -129,7 +129,7 @@ func (o *ModelsWechatRefundDetail) SetChannel(v string) {
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetCreateTime() string {
-	if o == nil || o.CreateTime == nil {
+	if o == nil || isNil(o.CreateTime) {
 		var ret string
 		return ret
 	}
@@ -139,15 +139,15 @@ func (o *ModelsWechatRefundDetail) GetCreateTime() string {
 // GetCreateTimeOk returns a tuple with the CreateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetCreateTimeOk() (*string, bool) {
-	if o == nil || o.CreateTime == nil {
-		return nil, false
+	if o == nil || isNil(o.CreateTime) {
+    return nil, false
 	}
 	return o.CreateTime, true
 }
 
 // HasCreateTime returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasCreateTime() bool {
-	if o != nil && o.CreateTime != nil {
+	if o != nil && !isNil(o.CreateTime) {
 		return true
 	}
 
@@ -161,7 +161,7 @@ func (o *ModelsWechatRefundDetail) SetCreateTime(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetCreatedAt() string {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || isNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
@@ -171,15 +171,15 @@ func (o *ModelsWechatRefundDetail) GetCreatedAt() string {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetCreatedAtOk() (*string, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.CreatedAt) {
+    return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !isNil(o.CreatedAt) {
 		return true
 	}
 
@@ -193,7 +193,7 @@ func (o *ModelsWechatRefundDetail) SetCreatedAt(v string) {
 
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetDeletedAt() GormDeletedAt {
-	if o == nil || o.DeletedAt == nil {
+	if o == nil || isNil(o.DeletedAt) {
 		var ret GormDeletedAt
 		return ret
 	}
@@ -203,15 +203,15 @@ func (o *ModelsWechatRefundDetail) GetDeletedAt() GormDeletedAt {
 // GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetDeletedAtOk() (*GormDeletedAt, bool) {
-	if o == nil || o.DeletedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.DeletedAt) {
+    return nil, false
 	}
 	return o.DeletedAt, true
 }
 
 // HasDeletedAt returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt != nil {
+	if o != nil && !isNil(o.DeletedAt) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *ModelsWechatRefundDetail) SetDeletedAt(v GormDeletedAt) {
 
 // GetFundsAccount returns the FundsAccount field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetFundsAccount() string {
-	if o == nil || o.FundsAccount == nil {
+	if o == nil || isNil(o.FundsAccount) {
 		var ret string
 		return ret
 	}
@@ -235,15 +235,15 @@ func (o *ModelsWechatRefundDetail) GetFundsAccount() string {
 // GetFundsAccountOk returns a tuple with the FundsAccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetFundsAccountOk() (*string, bool) {
-	if o == nil || o.FundsAccount == nil {
-		return nil, false
+	if o == nil || isNil(o.FundsAccount) {
+    return nil, false
 	}
 	return o.FundsAccount, true
 }
 
 // HasFundsAccount returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasFundsAccount() bool {
-	if o != nil && o.FundsAccount != nil {
+	if o != nil && !isNil(o.FundsAccount) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *ModelsWechatRefundDetail) SetFundsAccount(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || isNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -267,15 +267,15 @@ func (o *ModelsWechatRefundDetail) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
+	if o == nil || isNil(o.Id) {
+    return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !isNil(o.Id) {
 		return true
 	}
 
@@ -289,7 +289,7 @@ func (o *ModelsWechatRefundDetail) SetId(v int32) {
 
 // GetOutRefundNo returns the OutRefundNo field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetOutRefundNo() string {
-	if o == nil || o.OutRefundNo == nil {
+	if o == nil || isNil(o.OutRefundNo) {
 		var ret string
 		return ret
 	}
@@ -299,15 +299,15 @@ func (o *ModelsWechatRefundDetail) GetOutRefundNo() string {
 // GetOutRefundNoOk returns a tuple with the OutRefundNo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetOutRefundNoOk() (*string, bool) {
-	if o == nil || o.OutRefundNo == nil {
-		return nil, false
+	if o == nil || isNil(o.OutRefundNo) {
+    return nil, false
 	}
 	return o.OutRefundNo, true
 }
 
 // HasOutRefundNo returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasOutRefundNo() bool {
-	if o != nil && o.OutRefundNo != nil {
+	if o != nil && !isNil(o.OutRefundNo) {
 		return true
 	}
 
@@ -321,7 +321,7 @@ func (o *ModelsWechatRefundDetail) SetOutRefundNo(v string) {
 
 // GetOutTradeNo returns the OutTradeNo field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetOutTradeNo() string {
-	if o == nil || o.OutTradeNo == nil {
+	if o == nil || isNil(o.OutTradeNo) {
 		var ret string
 		return ret
 	}
@@ -331,15 +331,15 @@ func (o *ModelsWechatRefundDetail) GetOutTradeNo() string {
 // GetOutTradeNoOk returns a tuple with the OutTradeNo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetOutTradeNoOk() (*string, bool) {
-	if o == nil || o.OutTradeNo == nil {
-		return nil, false
+	if o == nil || isNil(o.OutTradeNo) {
+    return nil, false
 	}
 	return o.OutTradeNo, true
 }
 
 // HasOutTradeNo returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasOutTradeNo() bool {
-	if o != nil && o.OutTradeNo != nil {
+	if o != nil && !isNil(o.OutTradeNo) {
 		return true
 	}
 
@@ -353,7 +353,7 @@ func (o *ModelsWechatRefundDetail) SetOutTradeNo(v string) {
 
 // GetRefundId returns the RefundId field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetRefundId() string {
-	if o == nil || o.RefundId == nil {
+	if o == nil || isNil(o.RefundId) {
 		var ret string
 		return ret
 	}
@@ -363,15 +363,15 @@ func (o *ModelsWechatRefundDetail) GetRefundId() string {
 // GetRefundIdOk returns a tuple with the RefundId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetRefundIdOk() (*string, bool) {
-	if o == nil || o.RefundId == nil {
-		return nil, false
+	if o == nil || isNil(o.RefundId) {
+    return nil, false
 	}
 	return o.RefundId, true
 }
 
 // HasRefundId returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasRefundId() bool {
-	if o != nil && o.RefundId != nil {
+	if o != nil && !isNil(o.RefundId) {
 		return true
 	}
 
@@ -385,7 +385,7 @@ func (o *ModelsWechatRefundDetail) SetRefundId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || isNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -395,15 +395,15 @@ func (o *ModelsWechatRefundDetail) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
+	if o == nil || isNil(o.Status) {
+    return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !isNil(o.Status) {
 		return true
 	}
 
@@ -417,7 +417,7 @@ func (o *ModelsWechatRefundDetail) SetStatus(v string) {
 
 // GetSuccessTime returns the SuccessTime field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetSuccessTime() string {
-	if o == nil || o.SuccessTime == nil {
+	if o == nil || isNil(o.SuccessTime) {
 		var ret string
 		return ret
 	}
@@ -427,15 +427,15 @@ func (o *ModelsWechatRefundDetail) GetSuccessTime() string {
 // GetSuccessTimeOk returns a tuple with the SuccessTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetSuccessTimeOk() (*string, bool) {
-	if o == nil || o.SuccessTime == nil {
-		return nil, false
+	if o == nil || isNil(o.SuccessTime) {
+    return nil, false
 	}
 	return o.SuccessTime, true
 }
 
 // HasSuccessTime returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasSuccessTime() bool {
-	if o != nil && o.SuccessTime != nil {
+	if o != nil && !isNil(o.SuccessTime) {
 		return true
 	}
 
@@ -449,7 +449,7 @@ func (o *ModelsWechatRefundDetail) SetSuccessTime(v string) {
 
 // GetTransactionId returns the TransactionId field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetTransactionId() string {
-	if o == nil || o.TransactionId == nil {
+	if o == nil || isNil(o.TransactionId) {
 		var ret string
 		return ret
 	}
@@ -459,15 +459,15 @@ func (o *ModelsWechatRefundDetail) GetTransactionId() string {
 // GetTransactionIdOk returns a tuple with the TransactionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetTransactionIdOk() (*string, bool) {
-	if o == nil || o.TransactionId == nil {
-		return nil, false
+	if o == nil || isNil(o.TransactionId) {
+    return nil, false
 	}
 	return o.TransactionId, true
 }
 
 // HasTransactionId returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasTransactionId() bool {
-	if o != nil && o.TransactionId != nil {
+	if o != nil && !isNil(o.TransactionId) {
 		return true
 	}
 
@@ -481,7 +481,7 @@ func (o *ModelsWechatRefundDetail) SetTransactionId(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetUpdatedAt() string {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || isNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
@@ -491,15 +491,15 @@ func (o *ModelsWechatRefundDetail) GetUpdatedAt() string {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetUpdatedAtOk() (*string, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
+	if o == nil || isNil(o.UpdatedAt) {
+    return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !isNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -513,7 +513,7 @@ func (o *ModelsWechatRefundDetail) SetUpdatedAt(v string) {
 
 // GetUserReceivedAccount returns the UserReceivedAccount field value if set, zero value otherwise.
 func (o *ModelsWechatRefundDetail) GetUserReceivedAccount() string {
-	if o == nil || o.UserReceivedAccount == nil {
+	if o == nil || isNil(o.UserReceivedAccount) {
 		var ret string
 		return ret
 	}
@@ -523,15 +523,15 @@ func (o *ModelsWechatRefundDetail) GetUserReceivedAccount() string {
 // GetUserReceivedAccountOk returns a tuple with the UserReceivedAccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ModelsWechatRefundDetail) GetUserReceivedAccountOk() (*string, bool) {
-	if o == nil || o.UserReceivedAccount == nil {
-		return nil, false
+	if o == nil || isNil(o.UserReceivedAccount) {
+    return nil, false
 	}
 	return o.UserReceivedAccount, true
 }
 
 // HasUserReceivedAccount returns a boolean if a field has been set.
 func (o *ModelsWechatRefundDetail) HasUserReceivedAccount() bool {
-	if o != nil && o.UserReceivedAccount != nil {
+	if o != nil && !isNil(o.UserReceivedAccount) {
 		return true
 	}
 
@@ -545,49 +545,49 @@ func (o *ModelsWechatRefundDetail) SetUserReceivedAccount(v string) {
 
 func (o ModelsWechatRefundDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.Channel != nil {
+	if !isNil(o.Channel) {
 		toSerialize["channel"] = o.Channel
 	}
-	if o.CreateTime != nil {
+	if !isNil(o.CreateTime) {
 		toSerialize["create_time"] = o.CreateTime
 	}
-	if o.CreatedAt != nil {
+	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.DeletedAt != nil {
+	if !isNil(o.DeletedAt) {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
-	if o.FundsAccount != nil {
+	if !isNil(o.FundsAccount) {
 		toSerialize["funds_account"] = o.FundsAccount
 	}
-	if o.Id != nil {
+	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	if o.OutRefundNo != nil {
+	if !isNil(o.OutRefundNo) {
 		toSerialize["out_refund_no"] = o.OutRefundNo
 	}
-	if o.OutTradeNo != nil {
+	if !isNil(o.OutTradeNo) {
 		toSerialize["out_trade_no"] = o.OutTradeNo
 	}
-	if o.RefundId != nil {
+	if !isNil(o.RefundId) {
 		toSerialize["refund_id"] = o.RefundId
 	}
-	if o.Status != nil {
+	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.SuccessTime != nil {
+	if !isNil(o.SuccessTime) {
 		toSerialize["success_time"] = o.SuccessTime
 	}
-	if o.TransactionId != nil {
+	if !isNil(o.TransactionId) {
 		toSerialize["transaction_id"] = o.TransactionId
 	}
-	if o.UpdatedAt != nil {
+	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.UserReceivedAccount != nil {
+	if !isNil(o.UserReceivedAccount) {
 		toSerialize["user_received_account"] = o.UserReceivedAccount
 	}
 

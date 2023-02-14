@@ -19,7 +19,15 @@ type ServicesMakeOrderReq struct {
 	Amount int32 `json:"amount"`
 	Description string `json:"description"`
 	NotifyUrl *string `json:"notify_url,omitempty"`
+	// 二维码宽度。 只有alipay，且 trade type 为 h5 模式有效，qr pay mode 为4 时有效； 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
+	QrCodeWidth *string `json:"qr_code_width,omitempty"`
+	// 支付二维码模式。 只有alipay，且 trade type 为 h5 模式有效; 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
+	QrPayMode *string `json:"qr_pay_mode,omitempty"`
+	// 付款成功后的跳转链接。只有alipay，且 trade type 为 h5 模式有效; 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
+	ReturnUrl *string `json:"return_url,omitempty"`
+	// alipay 当面付无效，当面付固定过期时间为2小时
 	TimeExpire int32 `json:"time_expire"`
+	TradeProvider string `json:"trade_provider"`
 	TradeType string `json:"trade_type"`
 	AdditionalProperties map[string]interface{}
 }
@@ -30,11 +38,12 @@ type _ServicesMakeOrderReq ServicesMakeOrderReq
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesMakeOrderReq(amount int32, description string, timeExpire int32, tradeType string) *ServicesMakeOrderReq {
+func NewServicesMakeOrderReq(amount int32, description string, timeExpire int32, tradeProvider string, tradeType string) *ServicesMakeOrderReq {
 	this := ServicesMakeOrderReq{}
 	this.Amount = amount
 	this.Description = description
 	this.TimeExpire = timeExpire
+	this.TradeProvider = tradeProvider
 	this.TradeType = tradeType
 	return &this
 }
@@ -61,7 +70,7 @@ func (o *ServicesMakeOrderReq) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetAmountOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Amount, true
 }
@@ -85,7 +94,7 @@ func (o *ServicesMakeOrderReq) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -97,7 +106,7 @@ func (o *ServicesMakeOrderReq) SetDescription(v string) {
 
 // GetNotifyUrl returns the NotifyUrl field value if set, zero value otherwise.
 func (o *ServicesMakeOrderReq) GetNotifyUrl() string {
-	if o == nil || o.NotifyUrl == nil {
+	if o == nil || isNil(o.NotifyUrl) {
 		var ret string
 		return ret
 	}
@@ -107,15 +116,15 @@ func (o *ServicesMakeOrderReq) GetNotifyUrl() string {
 // GetNotifyUrlOk returns a tuple with the NotifyUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetNotifyUrlOk() (*string, bool) {
-	if o == nil || o.NotifyUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.NotifyUrl) {
+    return nil, false
 	}
 	return o.NotifyUrl, true
 }
 
 // HasNotifyUrl returns a boolean if a field has been set.
 func (o *ServicesMakeOrderReq) HasNotifyUrl() bool {
-	if o != nil && o.NotifyUrl != nil {
+	if o != nil && !isNil(o.NotifyUrl) {
 		return true
 	}
 
@@ -125,6 +134,102 @@ func (o *ServicesMakeOrderReq) HasNotifyUrl() bool {
 // SetNotifyUrl gets a reference to the given string and assigns it to the NotifyUrl field.
 func (o *ServicesMakeOrderReq) SetNotifyUrl(v string) {
 	o.NotifyUrl = &v
+}
+
+// GetQrCodeWidth returns the QrCodeWidth field value if set, zero value otherwise.
+func (o *ServicesMakeOrderReq) GetQrCodeWidth() string {
+	if o == nil || isNil(o.QrCodeWidth) {
+		var ret string
+		return ret
+	}
+	return *o.QrCodeWidth
+}
+
+// GetQrCodeWidthOk returns a tuple with the QrCodeWidth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesMakeOrderReq) GetQrCodeWidthOk() (*string, bool) {
+	if o == nil || isNil(o.QrCodeWidth) {
+    return nil, false
+	}
+	return o.QrCodeWidth, true
+}
+
+// HasQrCodeWidth returns a boolean if a field has been set.
+func (o *ServicesMakeOrderReq) HasQrCodeWidth() bool {
+	if o != nil && !isNil(o.QrCodeWidth) {
+		return true
+	}
+
+	return false
+}
+
+// SetQrCodeWidth gets a reference to the given string and assigns it to the QrCodeWidth field.
+func (o *ServicesMakeOrderReq) SetQrCodeWidth(v string) {
+	o.QrCodeWidth = &v
+}
+
+// GetQrPayMode returns the QrPayMode field value if set, zero value otherwise.
+func (o *ServicesMakeOrderReq) GetQrPayMode() string {
+	if o == nil || isNil(o.QrPayMode) {
+		var ret string
+		return ret
+	}
+	return *o.QrPayMode
+}
+
+// GetQrPayModeOk returns a tuple with the QrPayMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesMakeOrderReq) GetQrPayModeOk() (*string, bool) {
+	if o == nil || isNil(o.QrPayMode) {
+    return nil, false
+	}
+	return o.QrPayMode, true
+}
+
+// HasQrPayMode returns a boolean if a field has been set.
+func (o *ServicesMakeOrderReq) HasQrPayMode() bool {
+	if o != nil && !isNil(o.QrPayMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetQrPayMode gets a reference to the given string and assigns it to the QrPayMode field.
+func (o *ServicesMakeOrderReq) SetQrPayMode(v string) {
+	o.QrPayMode = &v
+}
+
+// GetReturnUrl returns the ReturnUrl field value if set, zero value otherwise.
+func (o *ServicesMakeOrderReq) GetReturnUrl() string {
+	if o == nil || isNil(o.ReturnUrl) {
+		var ret string
+		return ret
+	}
+	return *o.ReturnUrl
+}
+
+// GetReturnUrlOk returns a tuple with the ReturnUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServicesMakeOrderReq) GetReturnUrlOk() (*string, bool) {
+	if o == nil || isNil(o.ReturnUrl) {
+    return nil, false
+	}
+	return o.ReturnUrl, true
+}
+
+// HasReturnUrl returns a boolean if a field has been set.
+func (o *ServicesMakeOrderReq) HasReturnUrl() bool {
+	if o != nil && !isNil(o.ReturnUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetReturnUrl gets a reference to the given string and assigns it to the ReturnUrl field.
+func (o *ServicesMakeOrderReq) SetReturnUrl(v string) {
+	o.ReturnUrl = &v
 }
 
 // GetTimeExpire returns the TimeExpire field value
@@ -141,7 +246,7 @@ func (o *ServicesMakeOrderReq) GetTimeExpire() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetTimeExpireOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TimeExpire, true
 }
@@ -149,6 +254,30 @@ func (o *ServicesMakeOrderReq) GetTimeExpireOk() (*int32, bool) {
 // SetTimeExpire sets field value
 func (o *ServicesMakeOrderReq) SetTimeExpire(v int32) {
 	o.TimeExpire = v
+}
+
+// GetTradeProvider returns the TradeProvider field value
+func (o *ServicesMakeOrderReq) GetTradeProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TradeProvider
+}
+
+// GetTradeProviderOk returns a tuple with the TradeProvider field value
+// and a boolean to check if the value has been set.
+func (o *ServicesMakeOrderReq) GetTradeProviderOk() (*string, bool) {
+	if o == nil {
+    return nil, false
+	}
+	return &o.TradeProvider, true
+}
+
+// SetTradeProvider sets field value
+func (o *ServicesMakeOrderReq) SetTradeProvider(v string) {
+	o.TradeProvider = v
 }
 
 // GetTradeType returns the TradeType field value
@@ -165,7 +294,7 @@ func (o *ServicesMakeOrderReq) GetTradeType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetTradeTypeOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TradeType, true
 }
@@ -183,11 +312,23 @@ func (o ServicesMakeOrderReq) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["description"] = o.Description
 	}
-	if o.NotifyUrl != nil {
+	if !isNil(o.NotifyUrl) {
 		toSerialize["notify_url"] = o.NotifyUrl
+	}
+	if !isNil(o.QrCodeWidth) {
+		toSerialize["qr_code_width"] = o.QrCodeWidth
+	}
+	if !isNil(o.QrPayMode) {
+		toSerialize["qr_pay_mode"] = o.QrPayMode
+	}
+	if !isNil(o.ReturnUrl) {
+		toSerialize["return_url"] = o.ReturnUrl
 	}
 	if true {
 		toSerialize["time_expire"] = o.TimeExpire
+	}
+	if true {
+		toSerialize["trade_provider"] = o.TradeProvider
 	}
 	if true {
 		toSerialize["trade_type"] = o.TradeType
@@ -213,7 +354,11 @@ func (o *ServicesMakeOrderReq) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "amount")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "notify_url")
+		delete(additionalProperties, "qr_code_width")
+		delete(additionalProperties, "qr_pay_mode")
+		delete(additionalProperties, "return_url")
 		delete(additionalProperties, "time_expire")
+		delete(additionalProperties, "trade_provider")
 		delete(additionalProperties, "trade_type")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -34,8 +34,8 @@ type OrdersApi interface {
 	Close(ctx context.Context, tradeNo string) ApiCloseRequest
 
 	// CloseExecute executes the request
-	//  @return ModelsWechatOrderDetail
-	CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDetail, *http.Response, error)
+	//  @return ModelsOrderCore
+	CloseExecute(r ApiCloseRequest) (*ModelsOrderCore, *http.Response, error)
 
 	/*
 	MakeOrder Make Order
@@ -52,34 +52,19 @@ type OrdersApi interface {
 	MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder, *http.Response, error)
 
 	/*
-	QueryOrderSummary query order summary by trade no
-
-	query order summary by trade no
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param tradeNo trade no
-	@return ApiQueryOrderSummaryRequest
-	*/
-	QueryOrderSummary(ctx context.Context, tradeNo string) ApiQueryOrderSummaryRequest
-
-	// QueryOrderSummaryExecute executes the request
-	//  @return ModelsOrder
-	QueryOrderSummaryExecute(r ApiQueryOrderSummaryRequest) (*ModelsOrder, *http.Response, error)
-
-	/*
-	QueryWechatOrderDetail query order by trade no
+	QueryOrder query order by trade no
 
 	query order by trade no
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param tradeNo trade no
-	@return ApiQueryWechatOrderDetailRequest
+	@return ApiQueryOrderRequest
 	*/
-	QueryWechatOrderDetail(ctx context.Context, tradeNo string) ApiQueryWechatOrderDetailRequest
+	QueryOrder(ctx context.Context, tradeNo string) ApiQueryOrderRequest
 
-	// QueryWechatOrderDetailExecute executes the request
-	//  @return ModelsWechatOrderDetail
-	QueryWechatOrderDetailExecute(r ApiQueryWechatOrderDetailRequest) (*ModelsWechatOrderDetail, *http.Response, error)
+	// QueryOrderExecute executes the request
+	//  @return ModelsOrder
+	QueryOrderExecute(r ApiQueryOrderRequest) (*ModelsOrder, *http.Response, error)
 
 	/*
 	RefreshPayUrl refresh pay url
@@ -108,8 +93,8 @@ type OrdersApi interface {
 	Refund(ctx context.Context, tradeNo string) ApiRefundRequest
 
 	// RefundExecute executes the request
-	//  @return ModelsWechatRefundDetail
-	RefundExecute(r ApiRefundRequest) (*ModelsWechatRefundDetail, *http.Response, error)
+	//  @return ModelsOrderCore
+	RefundExecute(r ApiRefundRequest) (*ModelsOrderCore, *http.Response, error)
 }
 
 // OrdersApiService OrdersApi service
@@ -121,7 +106,7 @@ type ApiCloseRequest struct {
 	tradeNo string
 }
 
-func (r ApiCloseRequest) Execute() (*ModelsWechatOrderDetail, *http.Response, error) {
+func (r ApiCloseRequest) Execute() (*ModelsOrderCore, *http.Response, error) {
 	return r.ApiService.CloseExecute(r)
 }
 
@@ -143,13 +128,13 @@ func (a *OrdersApiService) Close(ctx context.Context, tradeNo string) ApiCloseRe
 }
 
 // Execute executes the request
-//  @return ModelsWechatOrderDetail
-func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDetail, *http.Response, error) {
+//  @return ModelsOrderCore
+func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsOrderCore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ModelsWechatOrderDetail
+		localVarReturnValue  *ModelsOrderCore
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.Close")
@@ -157,7 +142,7 @@ func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/wechat/close/{trade_no}"
+	localVarPath := localBasePath + "/orders/close/{trade_no}"
 	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -210,7 +195,8 @@ func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -220,7 +206,8 @@ func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsWechatOrderDe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -283,7 +270,7 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/wechat"
+	localVarPath := localBasePath + "/orders"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -340,7 +327,8 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -350,7 +338,8 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -367,27 +356,27 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiQueryOrderSummaryRequest struct {
+type ApiQueryOrderRequest struct {
 	ctx context.Context
 	ApiService OrdersApi
 	tradeNo string
 }
 
-func (r ApiQueryOrderSummaryRequest) Execute() (*ModelsOrder, *http.Response, error) {
-	return r.ApiService.QueryOrderSummaryExecute(r)
+func (r ApiQueryOrderRequest) Execute() (*ModelsOrder, *http.Response, error) {
+	return r.ApiService.QueryOrderExecute(r)
 }
 
 /*
-QueryOrderSummary query order summary by trade no
+QueryOrder query order by trade no
 
-query order summary by trade no
+query order by trade no
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param tradeNo trade no
- @return ApiQueryOrderSummaryRequest
+ @return ApiQueryOrderRequest
 */
-func (a *OrdersApiService) QueryOrderSummary(ctx context.Context, tradeNo string) ApiQueryOrderSummaryRequest {
-	return ApiQueryOrderSummaryRequest{
+func (a *OrdersApiService) QueryOrder(ctx context.Context, tradeNo string) ApiQueryOrderRequest {
+	return ApiQueryOrderRequest{
 		ApiService: a,
 		ctx: ctx,
 		tradeNo: tradeNo,
@@ -396,7 +385,7 @@ func (a *OrdersApiService) QueryOrderSummary(ctx context.Context, tradeNo string
 
 // Execute executes the request
 //  @return ModelsOrder
-func (a *OrdersApiService) QueryOrderSummaryExecute(r ApiQueryOrderSummaryRequest) (*ModelsOrder, *http.Response, error) {
+func (a *OrdersApiService) QueryOrderExecute(r ApiQueryOrderRequest) (*ModelsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -404,12 +393,12 @@ func (a *OrdersApiService) QueryOrderSummaryExecute(r ApiQueryOrderSummaryReques
 		localVarReturnValue  *ModelsOrder
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.QueryOrderSummary")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.QueryOrder")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/summary/{trade_no}"
+	localVarPath := localBasePath + "/orders/{trade_no}"
 	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -462,7 +451,8 @@ func (a *OrdersApiService) QueryOrderSummaryExecute(r ApiQueryOrderSummaryReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -472,129 +462,8 @@ func (a *OrdersApiService) QueryOrderSummaryExecute(r ApiQueryOrderSummaryReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiQueryWechatOrderDetailRequest struct {
-	ctx context.Context
-	ApiService OrdersApi
-	tradeNo string
-}
-
-func (r ApiQueryWechatOrderDetailRequest) Execute() (*ModelsWechatOrderDetail, *http.Response, error) {
-	return r.ApiService.QueryWechatOrderDetailExecute(r)
-}
-
-/*
-QueryWechatOrderDetail query order by trade no
-
-query order by trade no
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tradeNo trade no
- @return ApiQueryWechatOrderDetailRequest
-*/
-func (a *OrdersApiService) QueryWechatOrderDetail(ctx context.Context, tradeNo string) ApiQueryWechatOrderDetailRequest {
-	return ApiQueryWechatOrderDetailRequest{
-		ApiService: a,
-		ctx: ctx,
-		tradeNo: tradeNo,
-	}
-}
-
-// Execute executes the request
-//  @return ModelsWechatOrderDetail
-func (a *OrdersApiService) QueryWechatOrderDetailExecute(r ApiQueryWechatOrderDetailRequest) (*ModelsWechatOrderDetail, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ModelsWechatOrderDetail
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.QueryWechatOrderDetail")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/orders/wechat/{trade_no}"
-	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v CnsErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v CnsErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -653,7 +522,7 @@ func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*Ser
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/wechat/refresh-url/{trade_no}"
+	localVarPath := localBasePath + "/orders/refresh-url/{trade_no}"
 	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -706,7 +575,8 @@ func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*Ser
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -716,7 +586,8 @@ func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*Ser
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -746,7 +617,7 @@ func (r ApiRefundRequest) RefundReq(refundReq ServicesRefundReq) ApiRefundReques
 	return r
 }
 
-func (r ApiRefundRequest) Execute() (*ModelsWechatRefundDetail, *http.Response, error) {
+func (r ApiRefundRequest) Execute() (*ModelsOrderCore, *http.Response, error) {
 	return r.ApiService.RefundExecute(r)
 }
 
@@ -768,13 +639,13 @@ func (a *OrdersApiService) Refund(ctx context.Context, tradeNo string) ApiRefund
 }
 
 // Execute executes the request
-//  @return ModelsWechatRefundDetail
-func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsWechatRefundDetail, *http.Response, error) {
+//  @return ModelsOrderCore
+func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsOrderCore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ModelsWechatRefundDetail
+		localVarReturnValue  *ModelsOrderCore
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.Refund")
@@ -782,7 +653,7 @@ func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsWechatRefun
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/wechat/refund/{trade_no}"
+	localVarPath := localBasePath + "/orders/refund/{trade_no}"
 	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterToString(r.tradeNo, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -840,7 +711,8 @@ func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsWechatRefun
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -850,7 +722,8 @@ func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsWechatRefun
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

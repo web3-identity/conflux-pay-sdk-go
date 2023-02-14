@@ -45,7 +45,7 @@ func NewServicesMakeOrderRespWithDefaults() *ServicesMakeOrderResp {
 
 // GetCodeUrl returns the CodeUrl field value if set, zero value otherwise.
 func (o *ServicesMakeOrderResp) GetCodeUrl() string {
-	if o == nil || o.CodeUrl == nil {
+	if o == nil || isNil(o.CodeUrl) {
 		var ret string
 		return ret
 	}
@@ -55,15 +55,15 @@ func (o *ServicesMakeOrderResp) GetCodeUrl() string {
 // GetCodeUrlOk returns a tuple with the CodeUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderResp) GetCodeUrlOk() (*string, bool) {
-	if o == nil || o.CodeUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.CodeUrl) {
+    return nil, false
 	}
 	return o.CodeUrl, true
 }
 
 // HasCodeUrl returns a boolean if a field has been set.
 func (o *ServicesMakeOrderResp) HasCodeUrl() bool {
-	if o != nil && o.CodeUrl != nil {
+	if o != nil && !isNil(o.CodeUrl) {
 		return true
 	}
 
@@ -77,7 +77,7 @@ func (o *ServicesMakeOrderResp) SetCodeUrl(v string) {
 
 // GetH5Url returns the H5Url field value if set, zero value otherwise.
 func (o *ServicesMakeOrderResp) GetH5Url() string {
-	if o == nil || o.H5Url == nil {
+	if o == nil || isNil(o.H5Url) {
 		var ret string
 		return ret
 	}
@@ -87,15 +87,15 @@ func (o *ServicesMakeOrderResp) GetH5Url() string {
 // GetH5UrlOk returns a tuple with the H5Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderResp) GetH5UrlOk() (*string, bool) {
-	if o == nil || o.H5Url == nil {
-		return nil, false
+	if o == nil || isNil(o.H5Url) {
+    return nil, false
 	}
 	return o.H5Url, true
 }
 
 // HasH5Url returns a boolean if a field has been set.
 func (o *ServicesMakeOrderResp) HasH5Url() bool {
-	if o != nil && o.H5Url != nil {
+	if o != nil && !isNil(o.H5Url) {
 		return true
 	}
 
@@ -109,7 +109,7 @@ func (o *ServicesMakeOrderResp) SetH5Url(v string) {
 
 // GetTradeNo returns the TradeNo field value if set, zero value otherwise.
 func (o *ServicesMakeOrderResp) GetTradeNo() string {
-	if o == nil || o.TradeNo == nil {
+	if o == nil || isNil(o.TradeNo) {
 		var ret string
 		return ret
 	}
@@ -119,15 +119,15 @@ func (o *ServicesMakeOrderResp) GetTradeNo() string {
 // GetTradeNoOk returns a tuple with the TradeNo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderResp) GetTradeNoOk() (*string, bool) {
-	if o == nil || o.TradeNo == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeNo) {
+    return nil, false
 	}
 	return o.TradeNo, true
 }
 
 // HasTradeNo returns a boolean if a field has been set.
 func (o *ServicesMakeOrderResp) HasTradeNo() bool {
-	if o != nil && o.TradeNo != nil {
+	if o != nil && !isNil(o.TradeNo) {
 		return true
 	}
 
@@ -141,7 +141,7 @@ func (o *ServicesMakeOrderResp) SetTradeNo(v string) {
 
 // GetTradeProvider returns the TradeProvider field value if set, zero value otherwise.
 func (o *ServicesMakeOrderResp) GetTradeProvider() string {
-	if o == nil || o.TradeProvider == nil {
+	if o == nil || isNil(o.TradeProvider) {
 		var ret string
 		return ret
 	}
@@ -151,15 +151,15 @@ func (o *ServicesMakeOrderResp) GetTradeProvider() string {
 // GetTradeProviderOk returns a tuple with the TradeProvider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderResp) GetTradeProviderOk() (*string, bool) {
-	if o == nil || o.TradeProvider == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeProvider) {
+    return nil, false
 	}
 	return o.TradeProvider, true
 }
 
 // HasTradeProvider returns a boolean if a field has been set.
 func (o *ServicesMakeOrderResp) HasTradeProvider() bool {
-	if o != nil && o.TradeProvider != nil {
+	if o != nil && !isNil(o.TradeProvider) {
 		return true
 	}
 
@@ -173,7 +173,7 @@ func (o *ServicesMakeOrderResp) SetTradeProvider(v string) {
 
 // GetTradeType returns the TradeType field value if set, zero value otherwise.
 func (o *ServicesMakeOrderResp) GetTradeType() string {
-	if o == nil || o.TradeType == nil {
+	if o == nil || isNil(o.TradeType) {
 		var ret string
 		return ret
 	}
@@ -183,15 +183,15 @@ func (o *ServicesMakeOrderResp) GetTradeType() string {
 // GetTradeTypeOk returns a tuple with the TradeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderResp) GetTradeTypeOk() (*string, bool) {
-	if o == nil || o.TradeType == nil {
-		return nil, false
+	if o == nil || isNil(o.TradeType) {
+    return nil, false
 	}
 	return o.TradeType, true
 }
 
 // HasTradeType returns a boolean if a field has been set.
 func (o *ServicesMakeOrderResp) HasTradeType() bool {
-	if o != nil && o.TradeType != nil {
+	if o != nil && !isNil(o.TradeType) {
 		return true
 	}
 
@@ -205,19 +205,19 @@ func (o *ServicesMakeOrderResp) SetTradeType(v string) {
 
 func (o ServicesMakeOrderResp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CodeUrl != nil {
+	if !isNil(o.CodeUrl) {
 		toSerialize["code_url"] = o.CodeUrl
 	}
-	if o.H5Url != nil {
+	if !isNil(o.H5Url) {
 		toSerialize["h5_url"] = o.H5Url
 	}
-	if o.TradeNo != nil {
+	if !isNil(o.TradeNo) {
 		toSerialize["trade_no"] = o.TradeNo
 	}
-	if o.TradeProvider != nil {
+	if !isNil(o.TradeProvider) {
 		toSerialize["trade_provider"] = o.TradeProvider
 	}
-	if o.TradeType != nil {
+	if !isNil(o.TradeType) {
 		toSerialize["trade_type"] = o.TradeType
 	}
 

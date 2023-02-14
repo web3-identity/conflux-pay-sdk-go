@@ -17,8 +17,11 @@ Name | Type | Description | Notes
 **IsPayNotifyCompleted** | Pointer to **bool** |  | [optional] 
 **IsRefundNotifyCompleted** | Pointer to **bool** |  | [optional] 
 **PayNotifyCount** | Pointer to **int32** | PayNotifyNextTime    *time.Time &#x60;json:\&quot;pay_notify_next_time\&quot;&#x60; | [optional] 
+**QrCodeWidth** | Pointer to **string** | 二维码宽度。 只有alipay，且 trade type 为 h5 模式有效，qr pay mode 为4 时有效； 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene&#x3D;22 | [optional] 
+**QrPayMode** | Pointer to **string** | 支付二维码模式。 只有alipay，且 trade type 为 h5 模式有效; 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene&#x3D;22 | [optional] 
 **RefundNotifyCount** | Pointer to **int32** | RefundNotifyNextTime    *time.Time &#x60;json:\&quot;refund_notify_next_time\&quot;&#x60; | [optional] 
 **RefundState** | Pointer to **string** |  | [optional] 
+**ReturnUrl** | Pointer to **string** | 付款成功后的跳转链接。只有alipay，且 trade type 为 h5 模式有效; 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene&#x3D;22 | [optional] 
 **TimeExpire** | Pointer to **string** |  | [optional] 
 **TradeNo** | Pointer to **string** |  | [optional] 
 **TradeProvider** | Pointer to **string** |  | [optional] 
@@ -370,6 +373,56 @@ SetPayNotifyCount sets PayNotifyCount field to given value.
 
 HasPayNotifyCount returns a boolean if a field has been set.
 
+### GetQrCodeWidth
+
+`func (o *ModelsOrder) GetQrCodeWidth() string`
+
+GetQrCodeWidth returns the QrCodeWidth field if non-nil, zero value otherwise.
+
+### GetQrCodeWidthOk
+
+`func (o *ModelsOrder) GetQrCodeWidthOk() (*string, bool)`
+
+GetQrCodeWidthOk returns a tuple with the QrCodeWidth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQrCodeWidth
+
+`func (o *ModelsOrder) SetQrCodeWidth(v string)`
+
+SetQrCodeWidth sets QrCodeWidth field to given value.
+
+### HasQrCodeWidth
+
+`func (o *ModelsOrder) HasQrCodeWidth() bool`
+
+HasQrCodeWidth returns a boolean if a field has been set.
+
+### GetQrPayMode
+
+`func (o *ModelsOrder) GetQrPayMode() string`
+
+GetQrPayMode returns the QrPayMode field if non-nil, zero value otherwise.
+
+### GetQrPayModeOk
+
+`func (o *ModelsOrder) GetQrPayModeOk() (*string, bool)`
+
+GetQrPayModeOk returns a tuple with the QrPayMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQrPayMode
+
+`func (o *ModelsOrder) SetQrPayMode(v string)`
+
+SetQrPayMode sets QrPayMode field to given value.
+
+### HasQrPayMode
+
+`func (o *ModelsOrder) HasQrPayMode() bool`
+
+HasQrPayMode returns a boolean if a field has been set.
+
 ### GetRefundNotifyCount
 
 `func (o *ModelsOrder) GetRefundNotifyCount() int32`
@@ -419,6 +472,31 @@ SetRefundState sets RefundState field to given value.
 `func (o *ModelsOrder) HasRefundState() bool`
 
 HasRefundState returns a boolean if a field has been set.
+
+### GetReturnUrl
+
+`func (o *ModelsOrder) GetReturnUrl() string`
+
+GetReturnUrl returns the ReturnUrl field if non-nil, zero value otherwise.
+
+### GetReturnUrlOk
+
+`func (o *ModelsOrder) GetReturnUrlOk() (*string, bool)`
+
+GetReturnUrlOk returns a tuple with the ReturnUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReturnUrl
+
+`func (o *ModelsOrder) SetReturnUrl(v string)`
+
+SetReturnUrl sets ReturnUrl field to given value.
+
+### HasReturnUrl
+
+`func (o *ModelsOrder) HasReturnUrl() bool`
+
+HasReturnUrl returns a boolean if a field has been set.
 
 ### GetTimeExpire
 
