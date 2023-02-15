@@ -17,6 +17,7 @@ import (
 // ServicesMakeOrderReq struct for ServicesMakeOrderReq
 type ServicesMakeOrderReq struct {
 	Amount int32 `json:"amount"`
+	AppName string `json:"app_name"`
 	Description string `json:"description"`
 	NotifyUrl *string `json:"notify_url,omitempty"`
 	// 二维码宽度。 只有alipay，且 trade type 为 h5 模式有效，qr pay mode 为4 时有效； 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene=22
@@ -38,9 +39,10 @@ type _ServicesMakeOrderReq ServicesMakeOrderReq
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicesMakeOrderReq(amount int32, description string, timeExpire int32, tradeProvider string, tradeType string) *ServicesMakeOrderReq {
+func NewServicesMakeOrderReq(amount int32, appName string, description string, timeExpire int32, tradeProvider string, tradeType string) *ServicesMakeOrderReq {
 	this := ServicesMakeOrderReq{}
 	this.Amount = amount
+	this.AppName = appName
 	this.Description = description
 	this.TimeExpire = timeExpire
 	this.TradeProvider = tradeProvider
@@ -78,6 +80,30 @@ func (o *ServicesMakeOrderReq) GetAmountOk() (*int32, bool) {
 // SetAmount sets field value
 func (o *ServicesMakeOrderReq) SetAmount(v int32) {
 	o.Amount = v
+}
+
+// GetAppName returns the AppName field value
+func (o *ServicesMakeOrderReq) GetAppName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AppName
+}
+
+// GetAppNameOk returns a tuple with the AppName field value
+// and a boolean to check if the value has been set.
+func (o *ServicesMakeOrderReq) GetAppNameOk() (*string, bool) {
+	if o == nil {
+    return nil, false
+	}
+	return &o.AppName, true
+}
+
+// SetAppName sets field value
+func (o *ServicesMakeOrderReq) SetAppName(v string) {
+	o.AppName = v
 }
 
 // GetDescription returns the Description field value
@@ -310,6 +336,9 @@ func (o ServicesMakeOrderReq) MarshalJSON() ([]byte, error) {
 		toSerialize["amount"] = o.Amount
 	}
 	if true {
+		toSerialize["app_name"] = o.AppName
+	}
+	if true {
 		toSerialize["description"] = o.Description
 	}
 	if !isNil(o.NotifyUrl) {
@@ -352,6 +381,7 @@ func (o *ServicesMakeOrderReq) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "amount")
+		delete(additionalProperties, "app_name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "notify_url")
 		delete(additionalProperties, "qr_code_width")

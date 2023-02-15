@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-    makeOrdReq := *openapiclient.NewServicesMakeOrderReq(int32(123), "Description_example", int32(123), "TradeProvider_example", "TradeType_example") // ServicesMakeOrderReq | make_wechat_order_req
+    makeOrdReq := *openapiclient.NewServicesMakeOrderReq(int32(123), "AppName_example", "Description_example", int32(123), "TradeProvider_example", "TradeType_example") // ServicesMakeOrderReq | make_wechat_order_req
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

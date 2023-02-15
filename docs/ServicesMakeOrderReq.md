@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **int32** |  | 
+**AppName** | **string** |  | 
 **Description** | **string** |  | 
 **NotifyUrl** | Pointer to **string** |  | [optional] 
 **QrCodeWidth** | Pointer to **string** | 二维码宽度。 只有alipay，且 trade type 为 h5 模式有效，qr pay mode 为4 时有效； 用法参考 https://opendocs.alipay.com/apis/api_1/alipay.trade.page.pay?scene&#x3D;22 | [optional] 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewServicesMakeOrderReq
 
-`func NewServicesMakeOrderReq(amount int32, description string, timeExpire int32, tradeProvider string, tradeType string, ) *ServicesMakeOrderReq`
+`func NewServicesMakeOrderReq(amount int32, appName string, description string, timeExpire int32, tradeProvider string, tradeType string, ) *ServicesMakeOrderReq`
 
 NewServicesMakeOrderReq instantiates a new ServicesMakeOrderReq object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +52,26 @@ and a boolean to check if the value has been set.
 `func (o *ServicesMakeOrderReq) SetAmount(v int32)`
 
 SetAmount sets Amount field to given value.
+
+
+### GetAppName
+
+`func (o *ServicesMakeOrderReq) GetAppName() string`
+
+GetAppName returns the AppName field if non-nil, zero value otherwise.
+
+### GetAppNameOk
+
+`func (o *ServicesMakeOrderReq) GetAppNameOk() (*string, bool)`
+
+GetAppNameOk returns a tuple with the AppName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppName
+
+`func (o *ServicesMakeOrderReq) SetAppName(v string)`
+
+SetAppName sets AppName field to given value.
 
 
 ### GetDescription
