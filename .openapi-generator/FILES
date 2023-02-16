@@ -11,7 +11,6 @@ docs/ModelsOrder.md
 docs/ModelsOrderCore.md
 docs/OrdersApi.md
 docs/ServicesMakeOrderReq.md
-docs/ServicesMakeOrderResp.md
 docs/ServicesRefundReq.md
 git_push.sh
 go.mod
@@ -21,7 +20,6 @@ model_gorm_deleted_at.go
 model_models_order.go
 model_models_order_core.go
 model_services_make_order_req.go
-model_services_make_order_resp.go
 model_services_refund_req.go
 response.go
 test/api_orders_test.go
