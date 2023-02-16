@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **TradeState** | Pointer to **string** |  | [optional] 
 **TradeType** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
+**WapUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -647,6 +648,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *ModelsOrder) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetWapUrl
+
+`func (o *ModelsOrder) GetWapUrl() string`
+
+GetWapUrl returns the WapUrl field if non-nil, zero value otherwise.
+
+### GetWapUrlOk
+
+`func (o *ModelsOrder) GetWapUrlOk() (*string, bool)`
+
+GetWapUrlOk returns a tuple with the WapUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWapUrl
+
+`func (o *ModelsOrder) SetWapUrl(v string)`
+
+SetWapUrl sets WapUrl field to given value.
+
+### HasWapUrl
+
+`func (o *ModelsOrder) HasWapUrl() bool`
+
+HasWapUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

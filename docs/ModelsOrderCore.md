@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **TradeProvider** | Pointer to **string** |  | [optional] 
 **TradeState** | Pointer to **string** |  | [optional] 
 **TradeType** | Pointer to **string** |  | [optional] 
+**WapUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -387,6 +388,31 @@ SetTradeType sets TradeType field to given value.
 `func (o *ModelsOrderCore) HasTradeType() bool`
 
 HasTradeType returns a boolean if a field has been set.
+
+### GetWapUrl
+
+`func (o *ModelsOrderCore) GetWapUrl() string`
+
+GetWapUrl returns the WapUrl field if non-nil, zero value otherwise.
+
+### GetWapUrlOk
+
+`func (o *ModelsOrderCore) GetWapUrlOk() (*string, bool)`
+
+GetWapUrlOk returns a tuple with the WapUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWapUrl
+
+`func (o *ModelsOrderCore) SetWapUrl(v string)`
+
+SetWapUrl sets WapUrl field to given value.
+
+### HasWapUrl
+
+`func (o *ModelsOrderCore) HasWapUrl() bool`
+
+HasWapUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

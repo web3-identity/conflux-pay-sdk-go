@@ -92,7 +92,6 @@ Class | Method | HTTP request | Description
  - [ModelsOrder](docs/ModelsOrder.md)
  - [ModelsOrderCore](docs/ModelsOrderCore.md)
  - [ServicesMakeOrderReq](docs/ServicesMakeOrderReq.md)
- - [ServicesMakeOrderResp](docs/ServicesMakeOrderResp.md)
  - [ServicesRefundReq](docs/ServicesRefundReq.md)
 
 

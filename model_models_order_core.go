@@ -34,6 +34,7 @@ type ModelsOrderCore struct {
 	TradeProvider *string `json:"trade_provider,omitempty"`
 	TradeState *string `json:"trade_state,omitempty"`
 	TradeType *string `json:"trade_type,omitempty"`
+	WapUrl *string `json:"wap_url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -504,6 +505,38 @@ func (o *ModelsOrderCore) SetTradeType(v string) {
 	o.TradeType = &v
 }
 
+// GetWapUrl returns the WapUrl field value if set, zero value otherwise.
+func (o *ModelsOrderCore) GetWapUrl() string {
+	if o == nil || isNil(o.WapUrl) {
+		var ret string
+		return ret
+	}
+	return *o.WapUrl
+}
+
+// GetWapUrlOk returns a tuple with the WapUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ModelsOrderCore) GetWapUrlOk() (*string, bool) {
+	if o == nil || isNil(o.WapUrl) {
+    return nil, false
+	}
+	return o.WapUrl, true
+}
+
+// HasWapUrl returns a boolean if a field has been set.
+func (o *ModelsOrderCore) HasWapUrl() bool {
+	if o != nil && !isNil(o.WapUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetWapUrl gets a reference to the given string and assigns it to the WapUrl field.
+func (o *ModelsOrderCore) SetWapUrl(v string) {
+	o.WapUrl = &v
+}
+
 func (o ModelsOrderCore) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
@@ -548,6 +581,9 @@ func (o ModelsOrderCore) MarshalJSON() ([]byte, error) {
 	if !isNil(o.TradeType) {
 		toSerialize["trade_type"] = o.TradeType
 	}
+	if !isNil(o.WapUrl) {
+		toSerialize["wap_url"] = o.WapUrl
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -580,6 +616,7 @@ func (o *ModelsOrderCore) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "trade_provider")
 		delete(additionalProperties, "trade_state")
 		delete(additionalProperties, "trade_type")
+		delete(additionalProperties, "wap_url")
 		o.AdditionalProperties = additionalProperties
 	}
 
