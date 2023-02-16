@@ -94,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/services.MakeOrderReq'
+                $ref: '#/components/schemas/models.Order'
           description: OK
         "400":
           content:
@@ -350,17 +350,6 @@ components:
           type: string
       type: object
     services.MakeOrderReq:
-      example:
-        app_name: app_name
-        amount: 0
-        time_expire: 6
-        description: description
-        return_url: return_url
-        trade_type: trade_type
-        qr_code_width: qr_code_width
-        notify_url: notify_url
-        qr_pay_mode: qr_pay_mode
-        trade_provider: trade_provider
       properties:
         amount:
           type: integer

@@ -220,7 +220,7 @@ No authorization required
 
 ## RefreshPayUrl
 
-> ServicesMakeOrderReq RefreshPayUrl(ctx, tradeNo).Execute()
+> ModelsOrder RefreshPayUrl(ctx, tradeNo).Execute()
 
 refresh pay url
 
@@ -248,7 +248,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.RefreshPayUrl``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RefreshPayUrl`: ServicesMakeOrderReq
+    // response from `RefreshPayUrl`: ModelsOrder
     fmt.Fprintf(os.Stdout, "Response from `OrdersApi.RefreshPayUrl`: %v\n", resp)
 }
 ```
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServicesMakeOrderReq**](ServicesMakeOrderReq.md)
+[**ModelsOrder**](ModelsOrder.md)
 
 ### Authorization
 

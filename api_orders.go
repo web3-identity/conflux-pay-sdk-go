@@ -78,8 +78,8 @@ type OrdersApi interface {
 	RefreshPayUrl(ctx context.Context, tradeNo string) ApiRefreshPayUrlRequest
 
 	// RefreshPayUrlExecute executes the request
-	//  @return ServicesMakeOrderReq
-	RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ServicesMakeOrderReq, *http.Response, error)
+	//  @return ModelsOrder
+	RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ModelsOrder, *http.Response, error)
 
 	/*
 	Refund refund pay
@@ -486,7 +486,7 @@ type ApiRefreshPayUrlRequest struct {
 	tradeNo string
 }
 
-func (r ApiRefreshPayUrlRequest) Execute() (*ServicesMakeOrderReq, *http.Response, error) {
+func (r ApiRefreshPayUrlRequest) Execute() (*ModelsOrder, *http.Response, error) {
 	return r.ApiService.RefreshPayUrlExecute(r)
 }
 
@@ -508,13 +508,13 @@ func (a *OrdersApiService) RefreshPayUrl(ctx context.Context, tradeNo string) Ap
 }
 
 // Execute executes the request
-//  @return ServicesMakeOrderReq
-func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ServicesMakeOrderReq, *http.Response, error) {
+//  @return ModelsOrder
+func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ModelsOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServicesMakeOrderReq
+		localVarReturnValue  *ModelsOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.RefreshPayUrl")
