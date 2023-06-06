@@ -15,7 +15,6 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
@@ -78,6 +77,10 @@ All URIs are relative to *http://127.0.0.1:8080/v0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CmbApi* | [**AddUnitAccount**](docs/CmbApi.md#addunitaccount) | **Post** /cmb/unit-account | Add a unit account
+*CmbApi* | [**QueryHistoryCmbRecords**](docs/CmbApi.md#queryhistorycmbrecords) | **Get** /cmb/history | 查询历史交易
+*CmbApi* | [**QueryRecentCmbRecords**](docs/CmbApi.md#queryrecentcmbrecords) | **Get** /cmb/history/recent | 查询昨天和今天汇入的交易
+*CmbApi* | [**SetUnitAccountRelation**](docs/CmbApi.md#setunitaccountrelation) | **Post** /cmb/unit-account/relation | Set a related bank account of a unit account
 *OrdersApi* | [**Close**](docs/OrdersApi.md#close) | **Put** /orders/close/{trade_no} | close order
 *OrdersApi* | [**MakeOrder**](docs/OrdersApi.md#makeorder) | **Post** /orders | Make Order
 *OrdersApi* | [**QueryOrder**](docs/OrdersApi.md#queryorder) | **Get** /orders/{trade_no} | query order by trade no
@@ -88,7 +91,10 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [CnsErrorsRainbowErrorDetailInfo](docs/CnsErrorsRainbowErrorDetailInfo.md)
+ - [ControllersAddUnitAccountReq](docs/ControllersAddUnitAccountReq.md)
+ - [ControllersSetUnitAccountRelationReq](docs/ControllersSetUnitAccountRelationReq.md)
  - [GormDeletedAt](docs/GormDeletedAt.md)
+ - [ModelsCmbRecord](docs/ModelsCmbRecord.md)
  - [ModelsOrder](docs/ModelsOrder.md)
  - [ModelsOrderCore](docs/ModelsOrderCore.md)
  - [ServicesMakeOrderReq](docs/ServicesMakeOrderReq.md)

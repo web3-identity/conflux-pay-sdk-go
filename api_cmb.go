@@ -16,267 +16,120 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 
-type OrdersApi interface {
+type CmbApi interface {
 
 	/*
-	Close close order
+	AddUnitAccount Add a unit account
 
-	close order
+	Add a unit account
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param tradeNo trade no
-	@return ApiCloseRequest
+	@return ApiAddUnitAccountRequest
 	*/
-	Close(ctx context.Context, tradeNo string) ApiCloseRequest
+	AddUnitAccount(ctx context.Context) ApiAddUnitAccountRequest
 
-	// CloseExecute executes the request
-	//  @return ModelsOrderCore
-	CloseExecute(r ApiCloseRequest) (*ModelsOrderCore, *http.Response, error)
+	// AddUnitAccountExecute executes the request
+	AddUnitAccountExecute(r ApiAddUnitAccountRequest) (*http.Response, error)
 
 	/*
-	MakeOrder Make Order
+	QueryHistoryCmbRecords 查询历史交易
 
-	make order
+	查询历史交易
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiMakeOrderRequest
+	@return ApiQueryHistoryCmbRecordsRequest
 	*/
-	MakeOrder(ctx context.Context) ApiMakeOrderRequest
+	QueryHistoryCmbRecords(ctx context.Context) ApiQueryHistoryCmbRecordsRequest
 
-	// MakeOrderExecute executes the request
-	//  @return ModelsOrder
-	MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder, *http.Response, error)
+	// QueryHistoryCmbRecordsExecute executes the request
+	//  @return []ModelsCmbRecord
+	QueryHistoryCmbRecordsExecute(r ApiQueryHistoryCmbRecordsRequest) ([]ModelsCmbRecord, *http.Response, error)
 
 	/*
-	QueryOrder query order by trade no
+	QueryRecentCmbRecords 查询昨天和今天汇入的交易
 
-	query order by trade no
+	查询昨天和今天汇入的交易
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param tradeNo trade no
-	@return ApiQueryOrderRequest
+	@return ApiQueryRecentCmbRecordsRequest
 	*/
-	QueryOrder(ctx context.Context, tradeNo string) ApiQueryOrderRequest
+	QueryRecentCmbRecords(ctx context.Context) ApiQueryRecentCmbRecordsRequest
 
-	// QueryOrderExecute executes the request
-	//  @return ModelsOrder
-	QueryOrderExecute(r ApiQueryOrderRequest) (*ModelsOrder, *http.Response, error)
+	// QueryRecentCmbRecordsExecute executes the request
+	//  @return []ModelsCmbRecord
+	QueryRecentCmbRecordsExecute(r ApiQueryRecentCmbRecordsRequest) ([]ModelsCmbRecord, *http.Response, error)
 
 	/*
-	RefreshPayUrl refresh pay url
+	SetUnitAccountRelation Set a related bank account of a unit account
 
-	refresh pay url
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param tradeNo trade no
-	@return ApiRefreshPayUrlRequest
-	*/
-	RefreshPayUrl(ctx context.Context, tradeNo string) ApiRefreshPayUrlRequest
-
-	// RefreshPayUrlExecute executes the request
-	//  @return ModelsOrder
-	RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ModelsOrder, *http.Response, error)
-
-	/*
-	Refund refund pay
-
-	refund pay
+	Set a related bank account of a unit account
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param tradeNo trade no
-	@return ApiRefundRequest
+	@return ApiSetUnitAccountRelationRequest
 	*/
-	Refund(ctx context.Context, tradeNo string) ApiRefundRequest
+	SetUnitAccountRelation(ctx context.Context) ApiSetUnitAccountRelationRequest
 
-	// RefundExecute executes the request
-	//  @return ModelsOrderCore
-	RefundExecute(r ApiRefundRequest) (*ModelsOrderCore, *http.Response, error)
+	// SetUnitAccountRelationExecute executes the request
+	SetUnitAccountRelationExecute(r ApiSetUnitAccountRelationRequest) (*http.Response, error)
 }
 
-// OrdersApiService OrdersApi service
-type OrdersApiService service
+// CmbApiService CmbApi service
+type CmbApiService service
 
-type ApiCloseRequest struct {
+type ApiAddUnitAccountRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
-	tradeNo string
+	ApiService CmbApi
+	addUnitAccountReq *ControllersAddUnitAccountReq
 }
 
-func (r ApiCloseRequest) Execute() (*ModelsOrderCore, *http.Response, error) {
-	return r.ApiService.CloseExecute(r)
-}
-
-/*
-Close close order
-
-close order
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tradeNo trade no
- @return ApiCloseRequest
-*/
-func (a *OrdersApiService) Close(ctx context.Context, tradeNo string) ApiCloseRequest {
-	return ApiCloseRequest{
-		ApiService: a,
-		ctx: ctx,
-		tradeNo: tradeNo,
-	}
-}
-
-// Execute executes the request
-//  @return ModelsOrderCore
-func (a *OrdersApiService) CloseExecute(r ApiCloseRequest) (*ModelsOrderCore, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ModelsOrderCore
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.Close")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/orders/close/{trade_no}"
-	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterValueToString(r.tradeNo, "tradeNo")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v CnsErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v CnsErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiMakeOrderRequest struct {
-	ctx context.Context
-	ApiService OrdersApi
-	makeOrdReq *ServicesMakeOrderReq
-}
-
-// make_wechat_order_req
-func (r ApiMakeOrderRequest) MakeOrdReq(makeOrdReq ServicesMakeOrderReq) ApiMakeOrderRequest {
-	r.makeOrdReq = &makeOrdReq
+// add_unit_account_req
+func (r ApiAddUnitAccountRequest) AddUnitAccountReq(addUnitAccountReq ControllersAddUnitAccountReq) ApiAddUnitAccountRequest {
+	r.addUnitAccountReq = &addUnitAccountReq
 	return r
 }
 
-func (r ApiMakeOrderRequest) Execute() (*ModelsOrder, *http.Response, error) {
-	return r.ApiService.MakeOrderExecute(r)
+func (r ApiAddUnitAccountRequest) Execute() (*http.Response, error) {
+	return r.ApiService.AddUnitAccountExecute(r)
 }
 
 /*
-MakeOrder Make Order
+AddUnitAccount Add a unit account
 
-make order
+Add a unit account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMakeOrderRequest
+ @return ApiAddUnitAccountRequest
 */
-func (a *OrdersApiService) MakeOrder(ctx context.Context) ApiMakeOrderRequest {
-	return ApiMakeOrderRequest{
+func (a *CmbApiService) AddUnitAccount(ctx context.Context) ApiAddUnitAccountRequest {
+	return ApiAddUnitAccountRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ModelsOrder
-func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder, *http.Response, error) {
+func (a *CmbApiService) AddUnitAccountExecute(r ApiAddUnitAccountRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ModelsOrder
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.MakeOrder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CmbApiService.AddUnitAccount")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders"
+	localVarPath := localBasePath + "/cmb/unit-account"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.makeOrdReq == nil {
-		return localVarReturnValue, nil, reportError("makeOrdReq is required and must be specified")
+	if r.addUnitAccountReq == nil {
+		return nil, reportError("addUnitAccountReq is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -297,22 +150,22 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.makeOrdReq
+	localVarPostBody = r.addUnitAccountReq
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -325,86 +178,128 @@ func (a *OrdersApiService) MakeOrderExecute(r ApiMakeOrderRequest) (*ModelsOrder
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v CnsErrorsRainbowErrorDetailInfo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
-type ApiQueryOrderRequest struct {
+type ApiQueryHistoryCmbRecordsRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
-	tradeNo string
+	ApiService CmbApi
+	limit *int32
+	offset *int32
+	unitAccountNbr *string
+	transactionDate *string
+	transactionDirection *string
 }
 
-func (r ApiQueryOrderRequest) Execute() (*ModelsOrder, *http.Response, error) {
-	return r.ApiService.QueryOrderExecute(r)
+// limit
+func (r ApiQueryHistoryCmbRecordsRequest) Limit(limit int32) ApiQueryHistoryCmbRecordsRequest {
+	r.limit = &limit
+	return r
+}
+
+// offset
+func (r ApiQueryHistoryCmbRecordsRequest) Offset(offset int32) ApiQueryHistoryCmbRecordsRequest {
+	r.offset = &offset
+	return r
+}
+
+// specified unit account number
+func (r ApiQueryHistoryCmbRecordsRequest) UnitAccountNbr(unitAccountNbr string) ApiQueryHistoryCmbRecordsRequest {
+	r.unitAccountNbr = &unitAccountNbr
+	return r
+}
+
+// specified date, e.g. 20230523
+func (r ApiQueryHistoryCmbRecordsRequest) TransactionDate(transactionDate string) ApiQueryHistoryCmbRecordsRequest {
+	r.transactionDate = &transactionDate
+	return r
+}
+
+// transaction direction, C for recieve and D for out
+func (r ApiQueryHistoryCmbRecordsRequest) TransactionDirection(transactionDirection string) ApiQueryHistoryCmbRecordsRequest {
+	r.transactionDirection = &transactionDirection
+	return r
+}
+
+func (r ApiQueryHistoryCmbRecordsRequest) Execute() ([]ModelsCmbRecord, *http.Response, error) {
+	return r.ApiService.QueryHistoryCmbRecordsExecute(r)
 }
 
 /*
-QueryOrder query order by trade no
+QueryHistoryCmbRecords 查询历史交易
 
-query order by trade no
+查询历史交易
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tradeNo trade no
- @return ApiQueryOrderRequest
+ @return ApiQueryHistoryCmbRecordsRequest
 */
-func (a *OrdersApiService) QueryOrder(ctx context.Context, tradeNo string) ApiQueryOrderRequest {
-	return ApiQueryOrderRequest{
+func (a *CmbApiService) QueryHistoryCmbRecords(ctx context.Context) ApiQueryHistoryCmbRecordsRequest {
+	return ApiQueryHistoryCmbRecordsRequest{
 		ApiService: a,
 		ctx: ctx,
-		tradeNo: tradeNo,
 	}
 }
 
 // Execute executes the request
-//  @return ModelsOrder
-func (a *OrdersApiService) QueryOrderExecute(r ApiQueryOrderRequest) (*ModelsOrder, *http.Response, error) {
+//  @return []ModelsCmbRecord
+func (a *CmbApiService) QueryHistoryCmbRecordsExecute(r ApiQueryHistoryCmbRecordsRequest) ([]ModelsCmbRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ModelsOrder
+		localVarReturnValue  []ModelsCmbRecord
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.QueryOrder")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CmbApiService.QueryHistoryCmbRecords")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/{trade_no}"
-	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterValueToString(r.tradeNo, "tradeNo")), -1)
+	localVarPath := localBasePath + "/cmb/history"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if r.offset == nil {
+		return localVarReturnValue, nil, reportError("offset is required and must be specified")
+	}
+	if r.unitAccountNbr == nil {
+		return localVarReturnValue, nil, reportError("unitAccountNbr is required and must be specified")
+	}
+	if r.transactionDate == nil {
+		return localVarReturnValue, nil, reportError("transactionDate is required and must be specified")
+	}
+	if r.transactionDirection == nil {
+		return localVarReturnValue, nil, reportError("transactionDirection is required and must be specified")
+	}
 
+	parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "unit_account_nbr", r.unitAccountNbr, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "transaction_date", r.transactionDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "transaction_direction", r.transactionDirection, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -480,187 +375,199 @@ func (a *OrdersApiService) QueryOrderExecute(r ApiQueryOrderRequest) (*ModelsOrd
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRefreshPayUrlRequest struct {
+type ApiQueryRecentCmbRecordsRequest struct {
 	ctx context.Context
-	ApiService OrdersApi
-	tradeNo string
+	ApiService CmbApi
+	limit *int32
+	offset *int32
 }
 
-func (r ApiRefreshPayUrlRequest) Execute() (*ModelsOrder, *http.Response, error) {
-	return r.ApiService.RefreshPayUrlExecute(r)
-}
-
-/*
-RefreshPayUrl refresh pay url
-
-refresh pay url
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tradeNo trade no
- @return ApiRefreshPayUrlRequest
-*/
-func (a *OrdersApiService) RefreshPayUrl(ctx context.Context, tradeNo string) ApiRefreshPayUrlRequest {
-	return ApiRefreshPayUrlRequest{
-		ApiService: a,
-		ctx: ctx,
-		tradeNo: tradeNo,
-	}
-}
-
-// Execute executes the request
-//  @return ModelsOrder
-func (a *OrdersApiService) RefreshPayUrlExecute(r ApiRefreshPayUrlRequest) (*ModelsOrder, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ModelsOrder
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.RefreshPayUrl")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/orders/refresh-url/{trade_no}"
-	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterValueToString(r.tradeNo, "tradeNo")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v CnsErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v CnsErrorsRainbowErrorDetailInfo
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiRefundRequest struct {
-	ctx context.Context
-	ApiService OrdersApi
-	tradeNo string
-	refundReq *ServicesRefundReq
-}
-
-// refund_req
-func (r ApiRefundRequest) RefundReq(refundReq ServicesRefundReq) ApiRefundRequest {
-	r.refundReq = &refundReq
+// limit
+func (r ApiQueryRecentCmbRecordsRequest) Limit(limit int32) ApiQueryRecentCmbRecordsRequest {
+	r.limit = &limit
 	return r
 }
 
-func (r ApiRefundRequest) Execute() (*ModelsOrderCore, *http.Response, error) {
-	return r.ApiService.RefundExecute(r)
+// offset
+func (r ApiQueryRecentCmbRecordsRequest) Offset(offset int32) ApiQueryRecentCmbRecordsRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiQueryRecentCmbRecordsRequest) Execute() ([]ModelsCmbRecord, *http.Response, error) {
+	return r.ApiService.QueryRecentCmbRecordsExecute(r)
 }
 
 /*
-Refund refund pay
+QueryRecentCmbRecords 查询昨天和今天汇入的交易
 
-refund pay
+查询昨天和今天汇入的交易
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tradeNo trade no
- @return ApiRefundRequest
+ @return ApiQueryRecentCmbRecordsRequest
 */
-func (a *OrdersApiService) Refund(ctx context.Context, tradeNo string) ApiRefundRequest {
-	return ApiRefundRequest{
+func (a *CmbApiService) QueryRecentCmbRecords(ctx context.Context) ApiQueryRecentCmbRecordsRequest {
+	return ApiQueryRecentCmbRecordsRequest{
 		ApiService: a,
 		ctx: ctx,
-		tradeNo: tradeNo,
 	}
 }
 
 // Execute executes the request
-//  @return ModelsOrderCore
-func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsOrderCore, *http.Response, error) {
+//  @return []ModelsCmbRecord
+func (a *CmbApiService) QueryRecentCmbRecordsExecute(r ApiQueryRecentCmbRecordsRequest) ([]ModelsCmbRecord, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ModelsOrderCore
+		localVarReturnValue  []ModelsCmbRecord
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrdersApiService.Refund")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CmbApiService.QueryRecentCmbRecords")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/orders/refund/{trade_no}"
-	localVarPath = strings.Replace(localVarPath, "{"+"trade_no"+"}", url.PathEscape(parameterValueToString(r.tradeNo, "tradeNo")), -1)
+	localVarPath := localBasePath + "/cmb/history/recent"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.refundReq == nil {
-		return localVarReturnValue, nil, reportError("refundReq is required and must be specified")
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if r.offset == nil {
+		return localVarReturnValue, nil, reportError("offset is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CnsErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v CnsErrorsRainbowErrorDetailInfo
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSetUnitAccountRelationRequest struct {
+	ctx context.Context
+	ApiService CmbApi
+	setUnitAccountRelationReq *ControllersSetUnitAccountRelationReq
+}
+
+// set_unit_account_relation_req
+func (r ApiSetUnitAccountRelationRequest) SetUnitAccountRelationReq(setUnitAccountRelationReq ControllersSetUnitAccountRelationReq) ApiSetUnitAccountRelationRequest {
+	r.setUnitAccountRelationReq = &setUnitAccountRelationReq
+	return r
+}
+
+func (r ApiSetUnitAccountRelationRequest) Execute() (*http.Response, error) {
+	return r.ApiService.SetUnitAccountRelationExecute(r)
+}
+
+/*
+SetUnitAccountRelation Set a related bank account of a unit account
+
+Set a related bank account of a unit account
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSetUnitAccountRelationRequest
+*/
+func (a *CmbApiService) SetUnitAccountRelation(ctx context.Context) ApiSetUnitAccountRelationRequest {
+	return ApiSetUnitAccountRelationRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *CmbApiService) SetUnitAccountRelationExecute(r ApiSetUnitAccountRelationRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CmbApiService.SetUnitAccountRelation")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/cmb/unit-account/relation"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setUnitAccountRelationReq == nil {
+		return nil, reportError("setUnitAccountRelationReq is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -681,22 +588,22 @@ func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsOrderCore, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.refundReq
+	localVarPostBody = r.setUnitAccountRelationReq
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -709,33 +616,24 @@ func (a *OrdersApiService) RefundExecute(r ApiRefundRequest) (*ModelsOrderCore, 
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v CnsErrorsRainbowErrorDetailInfo
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }

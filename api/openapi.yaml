@@ -11,6 +11,168 @@ servers:
 - url: http://127.0.0.1:8080/v0
 - url: https://127.0.0.1:8080/v0
 paths:
+  /cmb/history:
+    get:
+      description: 查询历史交易
+      operationId: QueryHistoryCmbRecords
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        required: true
+        schema:
+          type: integer
+      - description: offset
+        in: query
+        name: offset
+        required: true
+        schema:
+          type: integer
+      - description: specified unit account number
+        in: query
+        name: unit_account_nbr
+        required: true
+        schema:
+          type: string
+      - description: "specified date, e.g. 20230523"
+        in: query
+        name: transaction_date
+        required: true
+        schema:
+          type: string
+      - description: "transaction direction, C for recieve and D for out"
+        in: query
+        name: transaction_direction
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/models.CmbRecord'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      summary: 查询历史交易
+      tags:
+      - Cmb
+  /cmb/history/recent:
+    get:
+      description: 查询昨天和今天汇入的交易
+      operationId: QueryRecentCmbRecords
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        required: true
+        schema:
+          type: integer
+      - description: offset
+        in: query
+        name: offset
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/models.CmbRecord'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      summary: 查询昨天和今天汇入的交易
+      tags:
+      - Cmb
+  /cmb/unit-account:
+    post:
+      description: Add a unit account
+      operationId: AddUnitAccount
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/controllers.AddUnitAccountReq'
+        description: add_unit_account_req
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      summary: Add a unit account
+      tags:
+      - Cmb
+      x-codegen-request-body-name: add_unit_account_req
+  /cmb/unit-account/relation:
+    post:
+      description: Set a related bank account of a unit account
+      operationId: SetUnitAccountRelation
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/controllers.SetUnitAccountRelationReq'
+        description: set_unit_account_relation_req
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Invalid request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cns_errors.RainbowErrorDetailInfo'
+          description: Internal Server error
+      summary: Set a related bank account of a unit account
+      tags:
+      - Cmb
+      x-codegen-request-body-name: set_unit_account_relation_req
   /orders:
     post:
       description: make order
@@ -194,6 +356,26 @@ components:
         message:
           type: string
       type: object
+    controllers.AddUnitAccountReq:
+      properties:
+        unit_account_name:
+          type: string
+        unit_account_nbr:
+          type: string
+      required:
+      - unit_account_name
+      - unit_account_nbr
+      type: object
+    controllers.SetUnitAccountRelationReq:
+      properties:
+        bank_account_nbr:
+          type: string
+        unit_account_nbr:
+          type: string
+      required:
+      - bank_account_nbr
+      - unit_account_nbr
+      type: object
     gorm.DeletedAt:
       example:
         valid: true
@@ -204,6 +386,76 @@ components:
         valid:
           description: Valid is true if Time is not NULL
           type: boolean
+      type: object
+    models.CmbRecord:
+      example:
+        trxDir: trxDir
+        trxTxt: trxTxt
+        created_at: created_at
+        narInn: narInn
+        rpyAcc: rpyAcc
+        autFlg: autFlg
+        deleted_at:
+          valid: true
+          time: time
+        trxDat: trxDat
+        trxTim: trxTim
+        dmaNam: dmaNam
+        trxNbr: trxNbr
+        updated_at: updated_at
+        rpyNam: rpyNam
+        dmaNbr: dmaNbr
+        accNbr: accNbr
+        id: 0
+        ccyNbr: ccyNbr
+        trxAmt: 6.027456183070403
+      properties:
+        accNbr:
+          type: string
+        autFlg:
+          description: useless
+          type: string
+        ccyNbr:
+          description: expected to be rmb
+          type: string
+        created_at:
+          type: string
+        deleted_at:
+          $ref: '#/components/schemas/gorm.DeletedAt'
+        dmaNam:
+          description: sub unit name
+          type: string
+        dmaNbr:
+          description: sub unit number
+          type: string
+        id:
+          type: integer
+        narInn:
+          description: useless
+          type: string
+        rpyAcc:
+          description: useless
+          type: string
+        rpyNam:
+          description: useless
+          type: string
+        trxAmt:
+          type: number
+        trxDat:
+          type: string
+        trxDir:
+          description: tx direction
+          type: string
+        trxNbr:
+          description: unique
+          type: string
+        trxTim:
+          type: string
+        trxTxt:
+          description: txt that sender appended
+          type: string
+        updated_at:
+          type: string
       type: object
     models.Order:
       example:

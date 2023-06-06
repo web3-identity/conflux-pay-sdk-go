@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CnsErrorsRainbowErrorDetailInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CnsErrorsRainbowErrorDetailInfo{}
+
 // CnsErrorsRainbowErrorDetailInfo struct for CnsErrorsRainbowErrorDetailInfo
 type CnsErrorsRainbowErrorDetailInfo struct {
 	Code *int32 `json:"code,omitempty"`
@@ -53,7 +56,7 @@ func (o *CnsErrorsRainbowErrorDetailInfo) GetCode() int32 {
 // and a boolean to check if the value has been set.
 func (o *CnsErrorsRainbowErrorDetailInfo) GetCodeOk() (*int32, bool) {
 	if o == nil || isNil(o.Code) {
-    return nil, false
+		return nil, false
 	}
 	return o.Code, true
 }
@@ -85,7 +88,7 @@ func (o *CnsErrorsRainbowErrorDetailInfo) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *CnsErrorsRainbowErrorDetailInfo) GetMessageOk() (*string, bool) {
 	if o == nil || isNil(o.Message) {
-    return nil, false
+		return nil, false
 	}
 	return o.Message, true
 }
@@ -105,6 +108,14 @@ func (o *CnsErrorsRainbowErrorDetailInfo) SetMessage(v string) {
 }
 
 func (o CnsErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o CnsErrorsRainbowErrorDetailInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
@@ -117,7 +128,7 @@ func (o CnsErrorsRainbowErrorDetailInfo) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *CnsErrorsRainbowErrorDetailInfo) UnmarshalJSON(bytes []byte) (err error) {

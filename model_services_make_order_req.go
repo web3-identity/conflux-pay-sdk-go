@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesMakeOrderReq type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesMakeOrderReq{}
+
 // ServicesMakeOrderReq struct for ServicesMakeOrderReq
 type ServicesMakeOrderReq struct {
 	Amount int32 `json:"amount"`
@@ -72,7 +75,7 @@ func (o *ServicesMakeOrderReq) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetAmountOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Amount, true
 }
@@ -96,7 +99,7 @@ func (o *ServicesMakeOrderReq) GetAppName() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetAppNameOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.AppName, true
 }
@@ -120,7 +123,7 @@ func (o *ServicesMakeOrderReq) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Description, true
 }
@@ -143,7 +146,7 @@ func (o *ServicesMakeOrderReq) GetNotifyUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetNotifyUrlOk() (*string, bool) {
 	if o == nil || isNil(o.NotifyUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.NotifyUrl, true
 }
@@ -175,7 +178,7 @@ func (o *ServicesMakeOrderReq) GetQrCodeWidth() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetQrCodeWidthOk() (*string, bool) {
 	if o == nil || isNil(o.QrCodeWidth) {
-    return nil, false
+		return nil, false
 	}
 	return o.QrCodeWidth, true
 }
@@ -207,7 +210,7 @@ func (o *ServicesMakeOrderReq) GetQrPayMode() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetQrPayModeOk() (*string, bool) {
 	if o == nil || isNil(o.QrPayMode) {
-    return nil, false
+		return nil, false
 	}
 	return o.QrPayMode, true
 }
@@ -239,7 +242,7 @@ func (o *ServicesMakeOrderReq) GetReturnUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetReturnUrlOk() (*string, bool) {
 	if o == nil || isNil(o.ReturnUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.ReturnUrl, true
 }
@@ -272,7 +275,7 @@ func (o *ServicesMakeOrderReq) GetTimeExpire() int32 {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetTimeExpireOk() (*int32, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TimeExpire, true
 }
@@ -296,7 +299,7 @@ func (o *ServicesMakeOrderReq) GetTradeProvider() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetTradeProviderOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TradeProvider, true
 }
@@ -320,7 +323,7 @@ func (o *ServicesMakeOrderReq) GetTradeType() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesMakeOrderReq) GetTradeTypeOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.TradeType, true
 }
@@ -331,16 +334,18 @@ func (o *ServicesMakeOrderReq) SetTradeType(v string) {
 }
 
 func (o ServicesMakeOrderReq) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesMakeOrderReq) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["amount"] = o.Amount
-	}
-	if true {
-		toSerialize["app_name"] = o.AppName
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["amount"] = o.Amount
+	toSerialize["app_name"] = o.AppName
+	toSerialize["description"] = o.Description
 	if !isNil(o.NotifyUrl) {
 		toSerialize["notify_url"] = o.NotifyUrl
 	}
@@ -353,21 +358,15 @@ func (o ServicesMakeOrderReq) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ReturnUrl) {
 		toSerialize["return_url"] = o.ReturnUrl
 	}
-	if true {
-		toSerialize["time_expire"] = o.TimeExpire
-	}
-	if true {
-		toSerialize["trade_provider"] = o.TradeProvider
-	}
-	if true {
-		toSerialize["trade_type"] = o.TradeType
-	}
+	toSerialize["time_expire"] = o.TimeExpire
+	toSerialize["trade_provider"] = o.TradeProvider
+	toSerialize["trade_type"] = o.TradeType
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesMakeOrderReq) UnmarshalJSON(bytes []byte) (err error) {

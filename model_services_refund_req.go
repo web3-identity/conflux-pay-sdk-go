@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServicesRefundReq type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServicesRefundReq{}
+
 // ServicesRefundReq struct for ServicesRefundReq
 type ServicesRefundReq struct {
 	NotifyUrl *string `json:"notify_url,omitempty"`
@@ -54,7 +57,7 @@ func (o *ServicesRefundReq) GetNotifyUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesRefundReq) GetNotifyUrlOk() (*string, bool) {
 	if o == nil || isNil(o.NotifyUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.NotifyUrl, true
 }
@@ -87,7 +90,7 @@ func (o *ServicesRefundReq) GetReason() string {
 // and a boolean to check if the value has been set.
 func (o *ServicesRefundReq) GetReasonOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Reason, true
 }
@@ -98,19 +101,25 @@ func (o *ServicesRefundReq) SetReason(v string) {
 }
 
 func (o ServicesRefundReq) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ServicesRefundReq) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.NotifyUrl) {
 		toSerialize["notify_url"] = o.NotifyUrl
 	}
-	if true {
-		toSerialize["reason"] = o.Reason
-	}
+	toSerialize["reason"] = o.Reason
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ServicesRefundReq) UnmarshalJSON(bytes []byte) (err error) {

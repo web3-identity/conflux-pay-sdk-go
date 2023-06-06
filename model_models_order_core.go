@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsOrderCore type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsOrderCore{}
+
 // ModelsOrderCore struct for ModelsOrderCore
 type ModelsOrderCore struct {
 	// 单位为分
@@ -70,7 +73,7 @@ func (o *ModelsOrderCore) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -102,7 +105,7 @@ func (o *ModelsOrderCore) GetAppName() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetAppNameOk() (*string, bool) {
 	if o == nil || isNil(o.AppName) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppName, true
 }
@@ -134,7 +137,7 @@ func (o *ModelsOrderCore) GetCodeUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetCodeUrlOk() (*string, bool) {
 	if o == nil || isNil(o.CodeUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.CodeUrl, true
 }
@@ -166,7 +169,7 @@ func (o *ModelsOrderCore) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetDescriptionOk() (*string, bool) {
 	if o == nil || isNil(o.Description) {
-    return nil, false
+		return nil, false
 	}
 	return o.Description, true
 }
@@ -198,7 +201,7 @@ func (o *ModelsOrderCore) GetH5Url() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetH5UrlOk() (*string, bool) {
 	if o == nil || isNil(o.H5Url) {
-    return nil, false
+		return nil, false
 	}
 	return o.H5Url, true
 }
@@ -230,7 +233,7 @@ func (o *ModelsOrderCore) GetQrCodeWidth() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetQrCodeWidthOk() (*string, bool) {
 	if o == nil || isNil(o.QrCodeWidth) {
-    return nil, false
+		return nil, false
 	}
 	return o.QrCodeWidth, true
 }
@@ -262,7 +265,7 @@ func (o *ModelsOrderCore) GetQrPayMode() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetQrPayModeOk() (*string, bool) {
 	if o == nil || isNil(o.QrPayMode) {
-    return nil, false
+		return nil, false
 	}
 	return o.QrPayMode, true
 }
@@ -294,7 +297,7 @@ func (o *ModelsOrderCore) GetRefundState() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetRefundStateOk() (*string, bool) {
 	if o == nil || isNil(o.RefundState) {
-    return nil, false
+		return nil, false
 	}
 	return o.RefundState, true
 }
@@ -326,7 +329,7 @@ func (o *ModelsOrderCore) GetReturnUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetReturnUrlOk() (*string, bool) {
 	if o == nil || isNil(o.ReturnUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.ReturnUrl, true
 }
@@ -358,7 +361,7 @@ func (o *ModelsOrderCore) GetTimeExpire() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetTimeExpireOk() (*string, bool) {
 	if o == nil || isNil(o.TimeExpire) {
-    return nil, false
+		return nil, false
 	}
 	return o.TimeExpire, true
 }
@@ -390,7 +393,7 @@ func (o *ModelsOrderCore) GetTradeNo() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetTradeNoOk() (*string, bool) {
 	if o == nil || isNil(o.TradeNo) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeNo, true
 }
@@ -422,7 +425,7 @@ func (o *ModelsOrderCore) GetTradeProvider() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetTradeProviderOk() (*string, bool) {
 	if o == nil || isNil(o.TradeProvider) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeProvider, true
 }
@@ -454,7 +457,7 @@ func (o *ModelsOrderCore) GetTradeState() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetTradeStateOk() (*string, bool) {
 	if o == nil || isNil(o.TradeState) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeState, true
 }
@@ -486,7 +489,7 @@ func (o *ModelsOrderCore) GetTradeType() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetTradeTypeOk() (*string, bool) {
 	if o == nil || isNil(o.TradeType) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeType, true
 }
@@ -518,7 +521,7 @@ func (o *ModelsOrderCore) GetWapUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrderCore) GetWapUrlOk() (*string, bool) {
 	if o == nil || isNil(o.WapUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.WapUrl, true
 }
@@ -538,6 +541,14 @@ func (o *ModelsOrderCore) SetWapUrl(v string) {
 }
 
 func (o ModelsOrderCore) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsOrderCore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -589,7 +600,7 @@ func (o ModelsOrderCore) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsOrderCore) UnmarshalJSON(bytes []byte) (err error) {

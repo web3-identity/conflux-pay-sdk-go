@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ModelsOrder type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ModelsOrder{}
+
 // ModelsOrder struct for ModelsOrder
 type ModelsOrder struct {
 	// 单位为分
@@ -84,7 +87,7 @@ func (o *ModelsOrder) GetAmount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAmountOk() (*int32, bool) {
 	if o == nil || isNil(o.Amount) {
-    return nil, false
+		return nil, false
 	}
 	return o.Amount, true
 }
@@ -116,7 +119,7 @@ func (o *ModelsOrder) GetAppName() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAppNameOk() (*string, bool) {
 	if o == nil || isNil(o.AppName) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppName, true
 }
@@ -148,7 +151,7 @@ func (o *ModelsOrder) GetAppPayNotifyUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAppPayNotifyUrlOk() (*string, bool) {
 	if o == nil || isNil(o.AppPayNotifyUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppPayNotifyUrl, true
 }
@@ -180,7 +183,7 @@ func (o *ModelsOrder) GetAppRefundNotifyUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetAppRefundNotifyUrlOk() (*string, bool) {
 	if o == nil || isNil(o.AppRefundNotifyUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.AppRefundNotifyUrl, true
 }
@@ -212,7 +215,7 @@ func (o *ModelsOrder) GetCodeUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetCodeUrlOk() (*string, bool) {
 	if o == nil || isNil(o.CodeUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.CodeUrl, true
 }
@@ -244,7 +247,7 @@ func (o *ModelsOrder) GetCreatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetCreatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
@@ -276,7 +279,7 @@ func (o *ModelsOrder) GetDeletedAt() GormDeletedAt {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetDeletedAtOk() (*GormDeletedAt, bool) {
 	if o == nil || isNil(o.DeletedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.DeletedAt, true
 }
@@ -308,7 +311,7 @@ func (o *ModelsOrder) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetDescriptionOk() (*string, bool) {
 	if o == nil || isNil(o.Description) {
-    return nil, false
+		return nil, false
 	}
 	return o.Description, true
 }
@@ -340,7 +343,7 @@ func (o *ModelsOrder) GetH5Url() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetH5UrlOk() (*string, bool) {
 	if o == nil || isNil(o.H5Url) {
-    return nil, false
+		return nil, false
 	}
 	return o.H5Url, true
 }
@@ -372,7 +375,7 @@ func (o *ModelsOrder) GetId() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetIdOk() (*int32, bool) {
 	if o == nil || isNil(o.Id) {
-    return nil, false
+		return nil, false
 	}
 	return o.Id, true
 }
@@ -404,7 +407,7 @@ func (o *ModelsOrder) GetIsPayNotifyCompleted() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetIsPayNotifyCompletedOk() (*bool, bool) {
 	if o == nil || isNil(o.IsPayNotifyCompleted) {
-    return nil, false
+		return nil, false
 	}
 	return o.IsPayNotifyCompleted, true
 }
@@ -436,7 +439,7 @@ func (o *ModelsOrder) GetIsRefundNotifyCompleted() bool {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetIsRefundNotifyCompletedOk() (*bool, bool) {
 	if o == nil || isNil(o.IsRefundNotifyCompleted) {
-    return nil, false
+		return nil, false
 	}
 	return o.IsRefundNotifyCompleted, true
 }
@@ -468,7 +471,7 @@ func (o *ModelsOrder) GetPayNotifyCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetPayNotifyCountOk() (*int32, bool) {
 	if o == nil || isNil(o.PayNotifyCount) {
-    return nil, false
+		return nil, false
 	}
 	return o.PayNotifyCount, true
 }
@@ -500,7 +503,7 @@ func (o *ModelsOrder) GetQrCodeWidth() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetQrCodeWidthOk() (*string, bool) {
 	if o == nil || isNil(o.QrCodeWidth) {
-    return nil, false
+		return nil, false
 	}
 	return o.QrCodeWidth, true
 }
@@ -532,7 +535,7 @@ func (o *ModelsOrder) GetQrPayMode() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetQrPayModeOk() (*string, bool) {
 	if o == nil || isNil(o.QrPayMode) {
-    return nil, false
+		return nil, false
 	}
 	return o.QrPayMode, true
 }
@@ -564,7 +567,7 @@ func (o *ModelsOrder) GetRefundNotifyCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetRefundNotifyCountOk() (*int32, bool) {
 	if o == nil || isNil(o.RefundNotifyCount) {
-    return nil, false
+		return nil, false
 	}
 	return o.RefundNotifyCount, true
 }
@@ -596,7 +599,7 @@ func (o *ModelsOrder) GetRefundState() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetRefundStateOk() (*string, bool) {
 	if o == nil || isNil(o.RefundState) {
-    return nil, false
+		return nil, false
 	}
 	return o.RefundState, true
 }
@@ -628,7 +631,7 @@ func (o *ModelsOrder) GetReturnUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetReturnUrlOk() (*string, bool) {
 	if o == nil || isNil(o.ReturnUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.ReturnUrl, true
 }
@@ -660,7 +663,7 @@ func (o *ModelsOrder) GetTimeExpire() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTimeExpireOk() (*string, bool) {
 	if o == nil || isNil(o.TimeExpire) {
-    return nil, false
+		return nil, false
 	}
 	return o.TimeExpire, true
 }
@@ -692,7 +695,7 @@ func (o *ModelsOrder) GetTradeNo() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeNoOk() (*string, bool) {
 	if o == nil || isNil(o.TradeNo) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeNo, true
 }
@@ -724,7 +727,7 @@ func (o *ModelsOrder) GetTradeProvider() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeProviderOk() (*string, bool) {
 	if o == nil || isNil(o.TradeProvider) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeProvider, true
 }
@@ -756,7 +759,7 @@ func (o *ModelsOrder) GetTradeState() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeStateOk() (*string, bool) {
 	if o == nil || isNil(o.TradeState) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeState, true
 }
@@ -788,7 +791,7 @@ func (o *ModelsOrder) GetTradeType() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetTradeTypeOk() (*string, bool) {
 	if o == nil || isNil(o.TradeType) {
-    return nil, false
+		return nil, false
 	}
 	return o.TradeType, true
 }
@@ -820,7 +823,7 @@ func (o *ModelsOrder) GetUpdatedAt() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetUpdatedAtOk() (*string, bool) {
 	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
@@ -852,7 +855,7 @@ func (o *ModelsOrder) GetWapUrl() string {
 // and a boolean to check if the value has been set.
 func (o *ModelsOrder) GetWapUrlOk() (*string, bool) {
 	if o == nil || isNil(o.WapUrl) {
-    return nil, false
+		return nil, false
 	}
 	return o.WapUrl, true
 }
@@ -872,6 +875,14 @@ func (o *ModelsOrder) SetWapUrl(v string) {
 }
 
 func (o ModelsOrder) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ModelsOrder) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
@@ -953,7 +964,7 @@ func (o ModelsOrder) MarshalJSON() ([]byte, error) {
 		toSerialize[key] = value
 	}
 
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 func (o *ModelsOrder) UnmarshalJSON(bytes []byte) (err error) {
