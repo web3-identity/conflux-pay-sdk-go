@@ -92,7 +92,9 @@ Class | Method | HTTP request | Description
 
  - [CnsErrorsRainbowErrorDetailInfo](docs/CnsErrorsRainbowErrorDetailInfo.md)
  - [ControllersAddUnitAccountReq](docs/ControllersAddUnitAccountReq.md)
+ - [ControllersAddUnitAccountResult](docs/ControllersAddUnitAccountResult.md)
  - [ControllersSetUnitAccountRelationReq](docs/ControllersSetUnitAccountRelationReq.md)
+ - [ControllersSetUnitAccountRelationResult](docs/ControllersSetUnitAccountRelationResult.md)
  - [GormDeletedAt](docs/GormDeletedAt.md)
  - [ModelsCmbRecord](docs/ModelsCmbRecord.md)
  - [ModelsOrder](docs/ModelsOrder.md)

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## AddUnitAccount
 
-> AddUnitAccount(ctx).AddUnitAccountReq(addUnitAccountReq).Execute()
+> ControllersAddUnitAccountResult AddUnitAccount(ctx).AddUnitAccountReq(addUnitAccountReq).Execute()
 
 Add a unit account
 
@@ -36,11 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CmbApi.AddUnitAccount(context.Background()).AddUnitAccountReq(addUnitAccountReq).Execute()
+    resp, r, err := apiClient.CmbApi.AddUnitAccount(context.Background()).AddUnitAccountReq(addUnitAccountReq).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CmbApi.AddUnitAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `AddUnitAccount`: ControllersAddUnitAccountResult
+    fmt.Fprintf(os.Stdout, "Response from `CmbApi.AddUnitAccount`: %v\n", resp)
 }
 ```
 
@@ -59,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ControllersAddUnitAccountResult**](ControllersAddUnitAccountResult.md)
 
 ### Authorization
 
@@ -219,7 +221,7 @@ No authorization required
 
 ## SetUnitAccountRelation
 
-> SetUnitAccountRelation(ctx).SetUnitAccountRelationReq(setUnitAccountRelationReq).Execute()
+> ControllersSetUnitAccountRelationResult SetUnitAccountRelation(ctx).SetUnitAccountRelationReq(setUnitAccountRelationReq).Execute()
 
 Set a related bank account of a unit account
 
@@ -242,11 +244,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.CmbApi.SetUnitAccountRelation(context.Background()).SetUnitAccountRelationReq(setUnitAccountRelationReq).Execute()
+    resp, r, err := apiClient.CmbApi.SetUnitAccountRelation(context.Background()).SetUnitAccountRelationReq(setUnitAccountRelationReq).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CmbApi.SetUnitAccountRelation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `SetUnitAccountRelation`: ControllersSetUnitAccountRelationResult
+    fmt.Fprintf(os.Stdout, "Response from `CmbApi.SetUnitAccountRelation`: %v\n", resp)
 }
 ```
 
@@ -265,7 +269,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ControllersSetUnitAccountRelationResult**](ControllersSetUnitAccountRelationResult.md)
 
 ### Authorization
 

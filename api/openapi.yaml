@@ -124,7 +124,10 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.AddUnitAccountResult'
           description: OK
         "400":
           content:
@@ -155,7 +158,10 @@ paths:
         required: true
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/controllers.SetUnitAccountRelationResult'
           description: OK
         "400":
           content:
@@ -366,6 +372,15 @@ components:
       - unit_account_name
       - unit_account_nbr
       type: object
+    controllers.AddUnitAccountResult:
+      example:
+        full_unit_account_nbr: full_unit_account_nbr
+      properties:
+        full_unit_account_nbr:
+          type: string
+      required:
+      - full_unit_account_nbr
+      type: object
     controllers.SetUnitAccountRelationReq:
       properties:
         bank_account_nbr:
@@ -375,6 +390,15 @@ components:
       required:
       - bank_account_nbr
       - unit_account_nbr
+      type: object
+    controllers.SetUnitAccountRelationResult:
+      example:
+        code: 0
+      properties:
+        code:
+          type: integer
+      required:
+      - code
       type: object
     gorm.DeletedAt:
       example:
